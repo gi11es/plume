@@ -77,10 +77,11 @@ git clone https://github.com/gi11es/plume.git
 cd plume
 ```
 
-**2. Install dependencies:**
+**2. Set up the virtualenv:**
 
 ```bash
-pip install -r requirements.txt
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 ```
 
 **3. Link the skill to Claude Code:**
@@ -165,6 +166,7 @@ plume/
 ├── assets/                 # Logo + demo screenshots
 ├── .claude/
 │   └── skills/plume/       # Claude Code skill definition
+├── .venv/                 # Python virtualenv (created during install)
 ├── requirements.txt
 └── pyproject.toml
 ```
@@ -172,8 +174,8 @@ plume/
 ## Testing
 
 ```bash
-pip install pytest
-pytest tests/ -v
+.venv/bin/pip install pytest
+.venv/bin/pytest tests/ -v
 ```
 
 **225 tests** run against **18 real-world PDF forms** across 10 languages:

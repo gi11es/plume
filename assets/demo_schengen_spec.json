@@ -1,0 +1,389 @@
+{
+    "strategy": "overlay",
+    "fields": [
+        {
+            "value": "MARTIN",
+            "x": 60,
+            "y": 655,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "MARTIN",
+            "x": 60,
+            "y": 629,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Louise",
+            "x": 60,
+            "y": 608,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "1990-03-15",
+            "x": 60,
+            "y": 589,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "900315 075 012 45",
+            "x": 270,
+            "y": 589,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Paris, France",
+            "x": 60,
+            "y": 570,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 60,
+            "y": 550,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 248,
+            "y": 550,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 107,
+            "y": 530,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 253,
+            "y": 530,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "Jean-Pierre MARTIN",
+            "x": 60,
+            "y": 498,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Marie-Claire DUBOIS",
+            "x": 248,
+            "y": 498,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 67,
+            "y": 470,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "20FR12345",
+            "x": 60,
+            "y": 419,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Prefecture de Paris",
+            "x": 185,
+            "y": 419,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2024-06-01",
+            "x": 60,
+            "y": 400,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2034-06-01",
+            "x": 185,
+            "y": 400,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 60,
+            "y": 373,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Software Engineer",
+            "x": 60,
+            "y": 352,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "TechCorp SAS, 25 avenue des Champs-Elysees, 75008 Paris, +33 1 40 00 00 00",
+            "x": 60,
+            "y": 318,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "Germany",
+            "x": 60,
+            "y": 274,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 218,
+            "y": 276,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 293,
+            "y": 256,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 370,
+            "y": 276,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 206,
+            "y": 213,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "90",
+            "x": 388,
+            "y": 213,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Yes - Business visa C, 01/2025-03/2025",
+            "x": 60,
+            "y": 183,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "Yes, Berlin 01/2025; Munich 06/2024",
+            "x": 60,
+            "y": 120,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 130,
+            "y": 780,
+            "page": 1,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "2026-04-01",
+            "x": 64,
+            "y": 720,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2026-06-30",
+            "x": 266,
+            "y": 720,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Germany (Frankfurt Airport)",
+            "x": 67,
+            "y": 701,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Air",
+            "x": 266,
+            "y": 706,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "TechCorp GmbH, c/o Hans Mueller",
+            "x": 60,
+            "y": 654,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "+49 30 1234 5678",
+            "x": 361,
+            "y": 654,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Friedrichstrasse 100, 10117 Berlin, Germany",
+            "x": 60,
+            "y": 619,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "hans.mueller@techcorp.de",
+            "x": 361,
+            "y": 619,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 62,
+            "y": 573,
+            "page": 1,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 189,
+            "y": 573,
+            "page": 1,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 65,
+            "y": 528,
+            "page": 1,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 206,
+            "y": 528,
+            "page": 1,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "N/A",
+            "x": 60,
+            "y": 480,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 60,
+            "y": 454,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "12 rue des Lilas, 75011 Paris, France",
+            "x": 60,
+            "y": 143,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "sophie.martin@email.com",
+            "x": 60,
+            "y": 133,
+            "page": 1,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "+33 6 12 34 56 78",
+            "x": 370,
+            "y": 143,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Paris, 15-02-2026",
+            "x": 64,
+            "y": 96,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Sophie L. Martin",
+            "x": 298,
+            "y": 96,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        }
+    ]
+}

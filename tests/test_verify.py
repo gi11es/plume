@@ -7,98 +7,92 @@ from pathlib import Path
 
 import pytest
 
-SCRIPTS = Path(__file__).parent.parent / "scripts"
+from conftest import (
+    ACROFORM_PDFS, GRAPHICAL_PDFS, FIXTURES_DIR,
+    run_fill, run_verify, make_spec,
+)
 
 
-def run_fill(input_pdf, spec_path, output_pdf):
-    cmd = [sys.executable, str(SCRIPTS / "fill.py"), str(input_pdf), str(spec_path), str(output_pdf)]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-    assert result.returncode == 0, f"fill.py failed: {result.stderr}"
-    return json.loads(result.stdout)
-
-
-def run_verify(filled_pdf, spec_path, tolerance=5):
-    cmd = [
-        sys.executable, str(SCRIPTS / "verify.py"),
-        str(filled_pdf), str(spec_path),
-        "--tolerance", str(tolerance), "--pretty",
-    ]
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-    return json.loads(result.stdout), result.returncode
-
-
-def make_spec(tmp_path, spec_data):
-    spec_path = tmp_path / "fill_spec.json"
-    spec_path.write_text(json.dumps(spec_data))
-    return spec_path
-
+# ---------------------------------------------------------------------------
+# Overlay verification
+# ---------------------------------------------------------------------------
 
 class TestOverlayVerification:
-    """Test verification of overlay fills."""
-
-    def test_correct_overlay_passes(self, graphical_pdfs, fixtures_dir, tmp_output):
-        entry = graphical_pdfs[0]
-        pdf_path = fixtures_dir / entry["filename"]
-        output_path = tmp_output / "filled.pdf"
+    @pytest.fixture
+    def filled_overlay(self, tmp_path):
+        """Fill a graphical PDF and return (output_path, spec_path)."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_path / "filled.pdf"
 
         spec_data = {
             "strategy": "overlay",
             "fields": [
-                {"value": "Test Text", "x": 200, "y": 700, "page": 0, "font_size": 10, "type": "text"}
+                {"value": "Test Text", "x": 200, "y": 700, "page": 0,
+                 "font_size": 10, "type": "text"},
+                {"value": "Another", "x": 200, "y": 680, "page": 0,
+                 "font_size": 10, "type": "text"},
             ],
         }
-        spec_path = make_spec(tmp_output, spec_data)
-
+        spec_path = make_spec(tmp_path, spec_data)
         run_fill(pdf_path, spec_path, output_path)
-        report, exitcode = run_verify(output_path, spec_path)
+        return output_path, spec_path
+
+    def test_verification_report_structure(self, filled_overlay):
+        output_path, spec_path = filled_overlay
+        report, _ = run_verify(output_path, spec_path)
 
         assert "results" in report
         assert "summary" in report
-
-    def test_verification_report_structure(self, graphical_pdfs, fixtures_dir, tmp_output):
-        entry = graphical_pdfs[0]
-        pdf_path = fixtures_dir / entry["filename"]
-        output_path = tmp_output / "filled.pdf"
-
-        spec_data = {
-            "strategy": "overlay",
-            "fields": [
-                {"value": "Hello", "x": 100, "y": 500, "page": 0, "font_size": 10, "type": "text"}
-            ],
-        }
-        spec_path = make_spec(tmp_output, spec_data)
-
-        run_fill(pdf_path, spec_path, output_path)
-        report, _ = run_verify(output_path, spec_path)
-
         assert "total" in report["summary"]
         assert "pass" in report["summary"]
         assert "fail" in report["summary"]
         assert "all_passed" in report
 
+    def test_correct_overlay_passes(self, filled_overlay):
+        output_path, spec_path = filled_overlay
+        report, _ = run_verify(output_path, spec_path)
+        assert report["summary"]["total"] >= 1
+
+
+# ---------------------------------------------------------------------------
+# AcroForm verification
+# ---------------------------------------------------------------------------
 
 class TestAcroFormVerification:
-    """Test verification of AcroForm fills."""
-
-    def test_acroform_field_value_check(self, acroform_pdfs, fixtures_dir, tmp_output):
-        entry = acroform_pdfs[0]
-        pdf_path = fixtures_dir / entry["filename"]
-        output_path = tmp_output / "filled.pdf"
+    def test_acroform_field_value_verified(self, tmp_path):
+        """Fill an AcroForm field and verify the value is confirmed by verify.py."""
+        if not ACROFORM_PDFS:
+            pytest.skip("No AcroForm test PDFs")
+        entry = ACROFORM_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_path / "filled.pdf"
 
         from extract import extract_structure
         structure = extract_structure(str(pdf_path))
-        text_fields = [f for f in structure["acroform_fields"] if f["type"] == "text" and not f["readonly"]]
-
+        text_fields = [f for f in structure["acroform_fields"]
+                       if f["type"] == "text" and not f["readonly"]]
         if not text_fields:
             pytest.skip("No writable text fields")
 
+        test_value = "VerifyMe123"
         spec_data = {
             "strategy": "acroform",
-            "fields": [{"name": text_fields[0]["name"], "value": "Verified Text", "type": "text"}],
+            "fields": [
+                {"name": text_fields[0]["name"], "value": test_value, "type": "text"}
+            ],
         }
-        spec_path = make_spec(tmp_output, spec_data)
+        spec_path = make_spec(tmp_path, spec_data)
 
         run_fill(pdf_path, spec_path, output_path)
-        report, _ = run_verify(output_path, spec_path)
+        report, exitcode = run_verify(output_path, spec_path)
 
         assert report["summary"]["total"] >= 1
+        # The field we filled should pass verification
+        acro_results = [r for r in report["results"] if r.get("type") == "acroform"]
+        if acro_results:
+            assert any(r["status"] == "pass" for r in acro_results), (
+                f"No AcroForm field passed verification: {acro_results}"
+            )

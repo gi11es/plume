@@ -1,0 +1,22 @@
+{
+    "strategy": "acroform",
+    "fields": [
+        {"name": "Given Name Text Box", "value": "Sophie", "type": "text"},
+        {"name": "Family Name Text Box", "value": "MARTIN", "type": "text"},
+        {"name": "Address 1 Text Box", "value": "12 rue des Lilas", "type": "text"},
+        {"name": "House nr Text Box", "value": "12", "type": "text"},
+        {"name": "Address 2 Text Box", "value": "Apt 4B", "type": "text"},
+        {"name": "Postcode Text Box", "value": "75011", "type": "text"},
+        {"name": "City Text Box", "value": "Paris", "type": "text"},
+        {"name": "Country Combo Box", "value": "France", "type": "choice"},
+        {"name": "Gender List Box", "value": "Woman", "type": "choice"},
+        {"name": "Height Formatted Field", "value": "168", "type": "text"},
+        {"name": "Driving License Check Box", "value": "/Yes", "type": "checkbox"},
+        {"name": "Language 1 Check Box", "value": "/Off", "type": "checkbox"},
+        {"name": "Language 2 Check Box", "value": "/Yes", "type": "checkbox"},
+        {"name": "Language 3 Check Box", "value": "/Yes", "type": "checkbox"},
+        {"name": "Language 4 Check Box", "value": "/Off", "type": "checkbox"},
+        {"name": "Language 5 Check Box", "value": "/Off", "type": "checkbox"},
+        {"name": "Favourite Colour List Box", "value": "Blue", "type": "choice"}
+    ]
+}

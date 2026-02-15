@@ -109,7 +109,7 @@ Plume will:
 | **Graphical forms** (no fields) | Reads the content stream, finds colored rectangles and labels, overlays text at exact coordinates |
 | **Mixed** | Both strategies combined |
 
-Tested on government forms from the US (IRS), UK (HMCTS), Germany, Spain, France, Canada, and the EU &mdash; in English, French, Spanish, and German.
+Tested on 18 government forms from the US, UK, Germany, Spain, France, Italy, Portugal, Canada, Japan, Australia, and the EU &mdash; in 10 languages.
 
 ## How it works
 
@@ -152,7 +152,7 @@ plume/
 │   ├── user-info.example.json  # Example data (committed)
 │   └── user-info.json          # Your real data (gitignored)
 ├── tests/
-│   ├── fixtures/           # 12 government PDF forms
+│   ├── fixtures/           # 18 government PDF forms
 │   ├── test_extract.py
 │   ├── test_fill.py
 │   └── test_verify.py
@@ -170,7 +170,7 @@ pip install pytest
 pytest tests/ -v
 ```
 
-The test suite runs against 12 real-world PDF forms:
+**219 tests** run against **18 real-world PDF forms** across 10 languages:
 
 | Form | Type | Language | Fields |
 |------|------|----------|--------|
@@ -186,6 +186,14 @@ The test suite runs against 12 real-world PDF forms:
 | EU Schengen visa | Graphical | English | &mdash; |
 | French Schengen visa | Graphical | French | &mdash; |
 | German Schengen visa | Graphical | German/English | &mdash; |
+| Italian Schengen visa | Graphical | English/Italian | &mdash; |
+| Spanish Schengen visa | Graphical | Spanish/English | &mdash; |
+| Portuguese national visa | Graphical | English | &mdash; |
+| French long-stay visa | Graphical | English/French | &mdash; |
+| Japan customs declaration | Graphical | English/Japanese | &mdash; |
+| Australian passenger card | Graphical | English | &mdash; |
+
+Tests include AcroForm field readback verification (fill → read → assert value persists), graphical position validation (catches the all-zeros-bug), and regression tests for specific PDFs like the Schengen visa.
 
 ## License
 

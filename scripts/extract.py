@@ -249,54 +249,94 @@ def parse_content_stream(content, page_index):
                 "page": page_index,
             })
 
-    # Parse text blocks (BT ... ET)
-    text_block_pattern = re.compile(r"BT\s(.*?)\sET", re.DOTALL)
+    # Parse text blocks (BT ... ET) with proper cumulative positioning
+    # Handles Td, TD (cumulative), Tm (absolute), T* (next line), and nested moves
+    text_block_pattern = re.compile(r"BT(.*?)ET", re.DOTALL)
+
+    # Tokenizer for PDF operators within text blocks
+    token_pattern = re.compile(
+        r"(/\S+)"                                   # name like /F0
+        r"|(\((?:[^()\\]|\\.)*\))"                  # string in parens (handles escapes)
+        r"|\[((?:[^\[\]]|\((?:[^()\\]|\\.)*\))*)\]" # array [...]
+        r"|([-+]?\d*\.?\d+(?:[eE][-+]?\d+)?)"      # number
+        r"|([A-Za-z*\'\"]+)"                         # operator
+    )
 
     for block in text_block_pattern.finditer(all_tokens):
         block_content = block.group(1)
 
-        # Extract font
-        font_match = re.search(r"/(\S+)\s+([\d.]+)\s+Tf", block_content)
-        if font_match:
-            current_font = font_match.group(1)
-            current_font_size = float(font_match.group(2))
+        # State within this text block
+        tx, ty = 0, 0       # current text position (absolute)
+        line_x, line_y = 0, 0  # line start position
+        pending_nums = []
+        block_font = current_font
+        block_font_size = current_font_size
 
-        # Extract position (Td or Tm)
-        td_match = re.search(r"([\d.]+)\s+([\d.]+)\s+Td", block_content)
-        tm_match = re.search(
-            r"([\d.e+-]+)\s+([\d.e+-]+)\s+([\d.e+-]+)\s+([\d.e+-]+)\s+([\d.e+-]+)\s+([\d.e+-]+)\s+Tm",
-            block_content,
-        )
+        pending_string = None
+        pending_array = None
 
-        x, y = 0, 0
-        if tm_match:
-            x = float(tm_match.group(5))
-            y = float(tm_match.group(6))
-        elif td_match:
-            x = float(td_match.group(1))
-            y = float(td_match.group(2))
+        for m in token_pattern.finditer(block_content):
+            name, string, array, number, operator = m.groups()
 
-        # Extract text (Tj or TJ)
-        text_parts = []
-        for tj_match in re.finditer(r"\(([^)]*)\)\s*Tj", block_content):
-            text_parts.append(tj_match.group(1))
-        for tj_match in re.finditer(r"\[(.*?)\]\s*TJ", block_content):
-            array_content = tj_match.group(1)
-            for s in re.finditer(r"\(([^)]*)\)", array_content):
-                text_parts.append(s.group(1))
+            if number is not None:
+                pending_nums.append(float(number))
+            elif name is not None:
+                pending_nums.append(name)
+            elif string is not None:
+                # String operand — store for upcoming Tj
+                pending_string = string
+            elif array is not None:
+                # Array operand — store for upcoming TJ
+                pending_array = array
+            elif operator:
+                op = operator
+                if op == "Tf" and len(pending_nums) >= 2:
+                    block_font = str(pending_nums[-2]).lstrip("/")
+                    block_font_size = float(pending_nums[-1])
+                elif op in ("Td", "TD") and len(pending_nums) >= 2:
+                    dx = float(pending_nums[-2])
+                    dy = float(pending_nums[-1])
+                    line_x += dx
+                    line_y += dy
+                    tx, ty = line_x, line_y
+                elif op == "Tm" and len(pending_nums) >= 6:
+                    nums = [float(n) for n in pending_nums[-6:]]
+                    tx, ty = nums[4], nums[5]
+                    line_x, line_y = tx, ty
+                elif op in ("T*", "Tstar"):
+                    pass  # position doesn't change meaningfully without TL
+                elif op == "Tj" and pending_string is not None:
+                    text = pending_string[1:-1]  # strip parens
+                    text = text.replace("\\(", "(").replace("\\)", ")").replace("\\\\", "\\")
+                    if text.strip():
+                        labels.append({
+                            "text": text,
+                            "x": tx,
+                            "y": ty,
+                            "font": block_font,
+                            "font_size": block_font_size,
+                            "page": page_index,
+                        })
+                elif op == "TJ" and pending_array is not None:
+                    text_parts = []
+                    for s in re.finditer(r"\((?:[^()\\]|\\.)*\)", pending_array):
+                        part = s.group()[1:-1]
+                        part = part.replace("\\(", "(").replace("\\)", ")").replace("\\\\", "\\")
+                        text_parts.append(part)
+                    text = "".join(text_parts)
+                    if text.strip():
+                        labels.append({
+                            "text": text,
+                            "x": tx,
+                            "y": ty,
+                            "font": block_font,
+                            "font_size": block_font_size,
+                            "page": page_index,
+                        })
 
-        if text_parts:
-            text = "".join(text_parts)
-            # Decode common PDF escape sequences
-            text = text.replace("\\(", "(").replace("\\)", ")").replace("\\\\", "\\")
-            labels.append({
-                "text": text,
-                "x": x,
-                "y": y,
-                "font": current_font,
-                "font_size": current_font_size,
-                "page": page_index,
-            })
+                pending_nums = []
+                pending_string = None
+                pending_array = None
 
     return labels, rectangles, checkboxes
 

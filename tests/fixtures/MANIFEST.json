@@ -63,14 +63,13 @@
         "topmostSubform[0].Page1[0].c1_1[1]",
         "topmostSubform[0].Page1[0].c1_1[2]",
         "topmostSubform[0].Page1[0].c1_2[0]",
-        "topmostSubform[0].Page1[0].f1_06[0]",
-        "topmostSubform[0].Page1[0].f1_07[0]",
+        "topmostSubform[0].Page1[0].Step3_ReadOrder[0].f1_06[0]",
+        "topmostSubform[0].Page1[0].Step3_ReadOrder[0].f1_07[0]",
         "topmostSubform[0].Page1[0].f1_08[0]",
         "topmostSubform[0].Page1[0].f1_09[0]",
         "topmostSubform[0].Page1[0].f1_10[0]",
         "topmostSubform[0].Page1[0].f1_11[0]",
-        "topmostSubform[0].Page1[0].f1_12[0]",
-        "topmostSubform[0].Page1[0].f1_13[0]"
+        "topmostSubform[0].Page1[0].f1_12[0]"
       ],
       "notes": "XFA-based AcroForm. Step1a contains name/address fields (f1_01-f1_04), SSN=f1_05, filing status checkboxes=c1_1[0-2], Step2 checkbox=c1_2[0], dollar amount fields for Steps 3-4."
     },
@@ -156,10 +155,10 @@
         "topmostSubform[0].Page1[0].#area[1].Telefon[0]",
         "topmostSubform[0].Page1[0].Frage-1[0].Steuer-ID[0].Steuer-ID-1[0]",
         "topmostSubform[0].Page1[0].Frage-1[0].Steuer-ID[0].Steuer-ID-2[0]",
-        "topmostSubform[0].Page1[0].Frage-1[0].Name[0]",
-        "topmostSubform[0].Page1[0].Frage-1[0].Vorname[0]",
-        "topmostSubform[0].Page1[0].Frage-1[0].Geburtsdatum[0]",
-        "topmostSubform[0].Page1[0].Frage-1[0].Geburtsort[0]"
+        "topmostSubform[0].Page1[0].Frage-1[0].#area[5].Name-Antragsteller[0]",
+        "topmostSubform[0].Page1[0].Frage-1[0].#area[5].Vorname-Antragsteller[0]",
+        "topmostSubform[0].Page1[0].Frage-1[0].#area[5].Geburtsdatum-Antragsteller[0]",
+        "topmostSubform[0].Page1[0].Frage-1[0].#area[5].Geburtsort-Antragsteller[0]"
       ],
       "notes": "Bilingual German/English form from the Federal Employment Agency. XFA-based with German field names (Telefon, Steuer-ID, Name, Vorname, Geburtsdatum, Geburtsort). Tests non-ASCII field processing. Labels are in both German and English."
     },
@@ -287,25 +286,102 @@
         "Reset form button"
       ],
       "notes": "UK court service form with simple, human-readable field names. Small number of fields (8 total). Contains a Reset form button (/Btn type). Good test for legal/court form category. Labels match standard UK legal terminology."
+    },
+    {
+      "filename": "it_schengen_visa_graphical.pdf",
+      "description": "Italian Ministry of Foreign Affairs: Schengen Visa Application Form (Annex 9)",
+      "language": "en/it",
+      "type": "graphical",
+      "pages": 3,
+      "source_url": "https://www.esteri.it/mae/resource/doc/2016/01/annex_9__application_form__gennaio_2016_finale.pdf",
+      "field_count": 0,
+      "field_types": {},
+      "expected_fields": [],
+      "notes": "Graphical PDF with no interactive AcroForm fields. Italian embassy Schengen visa application (Annex 9 format). 3 pages with 88+ labels on page 0. Contains numbered sections: Surname, First name (given names), Date of birth, Place of birth, Current nationality, Sex, Marital status, National identity number, Type of travel document, Number of travel document, etc. Tests Italian-sourced form layout recognition."
+    },
+    {
+      "filename": "jp_customs_declaration_graphical.pdf",
+      "description": "Japan Customs Form C No.5360-B: Declaration of Accompanied Articles and Unaccompanied Articles",
+      "language": "en/ja",
+      "type": "graphical",
+      "pages": 2,
+      "source_url": "https://www.customs.go.jp/kaisei/youshiki/form_C/C5360-B.pdf",
+      "field_count": 0,
+      "field_types": {},
+      "expected_fields": [],
+      "notes": "Graphical PDF with no interactive AcroForm fields. Official Japan Customs declaration form (bilingual English/Japanese). 2 pages with 96+ labels on page 0. Contains fields for: Flight No./Name of Vessel, personal information, declaration of goods (alcohol, tobacco, firearms, currency, etc.). One declaration per family. Non-European form type - good test for East Asian government form layouts."
+    },
+    {
+      "filename": "au_incoming_passenger_graphical.pdf",
+      "description": "Australian Border Force: Incoming Passenger Card (IPC) - Sample English Version",
+      "language": "en",
+      "type": "graphical",
+      "pages": 2,
+      "source_url": "https://www.abf.gov.au/entering-leaving-australia/files/ipc-sample-english.pdf",
+      "field_count": 0,
+      "field_types": {},
+      "expected_fields": [],
+      "notes": "Graphical PDF with no interactive AcroForm fields. Official Australian Border Force incoming passenger card sample. 2 pages with 85+ labels on page 0. Contains fields for: Family/surname, declaration questions about prohibited goods, alcohol, tobacco, goods obtained overseas, currency over AUD$10,000, commercial goods, and personal information. Non-European form - good test for Oceanian government form layouts."
+    },
+    {
+      "filename": "pt_national_visa_graphical.pdf",
+      "description": "Portuguese Ministry of Foreign Affairs: Application for National Visa (Residence and Temporary Stay)",
+      "language": "en",
+      "type": "graphical",
+      "pages": 3,
+      "source_url": "https://vistos.mne.gov.pt/images/formulario_visto_nacional_en.pdf",
+      "field_count": 0,
+      "field_types": {},
+      "expected_fields": [],
+      "notes": "Graphical PDF with no interactive AcroForm fields. Portuguese national visa application (not Schengen - for residence and temporary stay). 3 pages with 147+ labels on page 0. Contains fields for: Family name, First name, Date of birth, Place of birth, Country of birth, Current nationality, Sex, Marital status, National identity number, Type of travel document, Number of travel document, Purpose of stay, Means of support, etc. High label density makes it a good stress test."
+    },
+    {
+      "filename": "es_schengen_visa_graphical.pdf",
+      "description": "Spanish Consulate Washington: Schengen Visa Application Form (Spanish/English bilingual)",
+      "language": "es/en",
+      "type": "graphical",
+      "pages": 4,
+      "source_url": "https://www.exteriores.gob.es/Consulados/washington/en/ServiciosConsulares/PublishingImages/Paginas/Consular/Visados-Schengen/Schengen%20visa%20application%20form.pdf",
+      "field_count": 0,
+      "field_types": {},
+      "expected_fields": [],
+      "notes": "Graphical PDF with no interactive AcroForm fields. Spanish consulate bilingual Schengen visa application. 4 pages with 71+ labels on page 0. Contains bilingual Spanish/English sections: Surname/Apellido, First name/Nombre, Date of birth/Fecha de nacimiento, Place of birth/Lugar de nacimiento, Current nationality/Nacionalidad actual, etc. Good test for bilingual Spanish/English form field detection."
+    },
+    {
+      "filename": "fr_long_stay_visa_graphical.pdf",
+      "description": "French Republic: Long-Stay Visa Application Form",
+      "language": "en/fr",
+      "type": "graphical",
+      "pages": 2,
+      "source_url": "https://www.diplomatie.gouv.fr/IMG/pdf/Long_Stay_Visa_Application_Form-2.pdf",
+      "field_count": 0,
+      "field_types": {},
+      "expected_fields": [],
+      "notes": "Graphical PDF with no interactive AcroForm fields. French Republic long-stay visa application (distinct from Schengen short-stay). 2 pages with 45+ labels on page 0. Uses custom font encoding that produces garbled text in the content stream parser - labels appear as control characters. This is an important edge case test for font decoding/ToUnicode CMap handling. The visual form contains standard visa fields but requires proper font decoding to extract readable text."
     }
   ],
   "summary": {
-    "total_forms": 12,
+    "total_forms": 18,
     "by_type": {
       "acroform": 8,
-      "graphical": 4
+      "graphical": 10
     },
     "by_language": {
-      "en": 6,
+      "en": 7,
       "de/en": 2,
       "es": 1,
+      "es/en": 1,
       "fr": 1,
+      "en/fr": 1,
+      "en/it": 1,
+      "en/ja": 1,
       "en (multilingual EU)": 1,
-      "en (US immigration)": 1
+      "en (US immigration)": 1,
+      "en (PT)": 1
     },
     "by_category": {
       "tax": 3,
-      "immigration_visa": 4,
+      "immigration_visa": 10,
       "government_application": 2,
       "legal_court": 1,
       "security_clearance": 1,
@@ -315,7 +391,7 @@
       "min": 0,
       "max": 6197,
       "forms_with_fields": 8,
-      "forms_without_fields": 4
+      "forms_without_fields": 10
     }
   }
 }

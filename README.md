@@ -81,7 +81,7 @@ cd plume
 
 ```bash
 python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
+.venv/bin/pip install -e .
 ```
 
 **3. Link the skill to Claude Code:**
@@ -174,11 +174,11 @@ plume/
 ## Testing
 
 ```bash
-.venv/bin/pip install pytest
+.venv/bin/pip install -e ".[dev]"
 .venv/bin/pytest tests/ -v
 ```
 
-**225 tests** run against **18 real-world PDF forms** across 10 languages:
+**312 tests** run against **18 real-world PDF forms** across 10 languages:
 
 | Form | Type | Language | Fields |
 |------|------|----------|--------|

@@ -26,6 +26,7 @@ else:
 SCRIPTS=$PLUME_ROOT/scripts
 MEMORY=$PLUME_ROOT/memory/user-info.json
 PYTHON=$PLUME_ROOT/.venv/bin/python
+if [ ! -x "$PYTHON" ]; then PYTHON=python3; fi
 ```
 
 ## Step 1: Validate Input

@@ -1,29 +1,68 @@
 {
     "strategy": "overlay",
     "fields": [
-        {"value": "MARTIN", "x": 18.0, "y": 189.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "Sophie Louise", "x": 18.0, "y": 175.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "20FR12345", "x": 18.0, "y": 162.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "AF274", "x": 18.0, "y": 133.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "Hotel Sydney, 123 George St, Sydney NSW 2000", "x": 18.0, "y": 117.0, "page": 0, "font_size": 6, "type": "text"},
-        {"value": "NSW", "x": 148.0, "y": 92.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "X", "x": 181.0, "y": 83.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 181.0, "y": 56.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 181.0, "y": 44.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 198.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 182.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 165.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 153.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 143.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 117.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 104.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 87.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 72.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 57.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 483.0, "y": 41.5, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "Sophie Martin", "x": 210.0, "y": 25.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "01", "x": 326.0, "y": 14.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "04", "x": 350.0, "y": 14.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "2026", "x": 370.0, "y": 14.0, "page": 0, "font_size": 7, "type": "text"}
+        {"value": "MARTIN", "x": 72.0, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "Sophie Louise", "x": 72.0, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "2", "x": 20.4, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "0", "x": 33.5, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "F", "x": 46.6, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "R", "x": 59.7, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "1", "x": 72.8, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2", "x": 85.8, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "3", "x": 98.9, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "4", "x": 112.0, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "5", "x": 125.1, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
+
+        {"value": "AF274", "x": 112.0, "y": 137.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "Hotel Hilton, 488 George St, Sydney NSW 2000", "x": 20.0, "y": 115.4, "page": 0, "font_size": 5.5, "type": "text"},
+
+        {"value": "N", "x": 168.7, "y": 100.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "S", "x": 180.1, "y": 100.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "W", "x": 191.4, "y": 100.0, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "X", "x": 192.3, "y": 84.2, "page": 0, "font_size": 7, "type": "checkbox"},
+        {"value": "X", "x": 192.3, "y": 57.2, "page": 0, "font_size": 7, "type": "checkbox"},
+        {"value": "X", "x": 192.3, "y": 45.2, "page": 0, "font_size": 7, "type": "checkbox"},
+
+        {"value": "X", "x": 494.2, "y": 199.7, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 183.4, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 167.1, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 154.3, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 145.1, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 118.9, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 105.4, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 89.1, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 73.5, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 58.7, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 494.2, "y": 43.1, "page": 0, "font_size": 6, "type": "checkbox"},
+
+        {"value": "Sophie Martin", "x": 190.0, "y": 12.4, "page": 0, "font_size": 8, "type": "text"},
+
+        {"value": "1", "x": 323.7, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "5", "x": 335.8, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "0", "x": 352.1, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2", "x": 364.1, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2", "x": 379.7, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "0", "x": 391.8, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2", "x": 403.8, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "6", "x": 415.9, "y": 8.6, "page": 0, "font_size": 10, "type": "text"},
+
+        {"value": "France", "x": 16.0, "y": 75.4, "page": 1, "font_size": 9, "type": "text"},
+        {"value": "Software Engineer", "x": 16.0, "y": 102.4, "page": 1, "font_size": 8, "type": "text"},
+        {"value": "French", "x": 16.0, "y": 130.4, "page": 1, "font_size": 9, "type": "text"},
+
+        {"value": "1", "x": 43.1, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "5", "x": 54.0, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "0", "x": 67.5, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "3", "x": 78.4, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "1", "x": 92.6, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "9", "x": 103.5, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "9", "x": 114.4, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "0", "x": 125.3, "y": 47.3, "page": 1, "font_size": 10, "type": "text"},
+
+        {"value": "France", "x": 305.0, "y": 97.4, "page": 1, "font_size": 9, "type": "text"},
+
+        {"value": "X", "x": 334.7, "y": 144.0, "page": 1, "font_size": 10, "type": "checkbox"}
     ]
 }

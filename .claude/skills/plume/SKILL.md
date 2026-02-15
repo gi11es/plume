@@ -53,15 +53,52 @@ This outputs JSON with:
 
 Save this output — you'll need it for field mapping.
 
+## Step 2b: Detect Fields in Graphical PDFs
+
+If the PDF is graphical (no AcroForm fields, or `recommended_strategy` is "overlay"), run the field detector for more precise positioning:
+
+```bash
+python3 $SCRIPTS/detect_fields.py "$INPUT_PDF" --all-pages --pretty
+```
+
+This uses multiple detection strategies:
+1. **Grid-line detection** — finds table grids formed by horizontal/vertical lines
+2. **Filled-rectangle detection** — finds white/colored input boxes on colored backgrounds
+3. **Character-box merging** — groups of small adjacent rectangles → single text fields
+4. **Checkbox detection** — small square shapes
+5. **Underline detection** — horizontal lines with labels (write-on-line fields)
+6. **OCR fallback** — for image-only PDFs (requires Tesseract)
+
+Each detected field includes:
+- `label`: the field label text
+- `fill_point`: {x, y} in PDF coordinates where text should be placed
+- `cell_rect`: bounding rectangle in PDF coordinates
+- `font_size`: recommended size based on cell height
+- `char_boxes`: number of character boxes (if applicable)
+
+Check the `confidence` field:
+- **high**: Auto-detection found good field coverage — use detected positions directly
+- **medium/low**: Detection is incomplete — generate a grid overlay for visual positioning:
+  ```bash
+  python3 $SCRIPTS/detect_fields.py "$INPUT_PDF" --grid-overlay /tmp/plume_grid.png --page 0
+  ```
+  Then **Read the grid overlay image** to visually determine exact coordinates.
+
+Also generate an annotated image to verify detection accuracy:
+```bash
+python3 $SCRIPTS/detect_fields.py "$INPUT_PDF" --annotate /tmp/plume_annotated.png --page 0
+```
+Blue boxes = text fields, green = character-box groups/checkboxes, red dots = fill points.
+
 ## Step 3: Understand the Form
 
 **Read the PDF visually** using the Read tool to see the actual layout. Then:
 
-1. List every fillable field you can identify (from both the JSON structure and visual inspection)
+1. List every fillable field you can identify (from the extract JSON, detect_fields output, and visual inspection)
 2. For each field, note:
    - The label text (e.g., "Nom et prénom :")
-   - The field type (text input, checkbox, dropdown, date)
-   - For overlay: the target rectangle coordinates
+   - The field type (text input, checkbox, dropdown, date, signature)
+   - For overlay: the target rectangle coordinates from detect_fields
    - For AcroForm: the field name
 3. Present the field list to the user for confirmation
 

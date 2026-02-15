@@ -1,30 +1,42 @@
 {
     "strategy": "overlay",
     "fields": [
-        {"value": "AF274", "x": 253.0, "y": 665.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Paris CDG", "x": 376.0, "y": 665.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "2026", "x": 295.0, "y": 645.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "04", "x": 360.0, "y": 645.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "01", "x": 400.0, "y": 645.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "MARTIN", "x": 253.0, "y": 628.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Sophie Louise", "x": 350.0, "y": 628.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Hotel Okura, 2-10-4 Toranomon, Minato-ku, Tokyo", "x": 253.0, "y": 604.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "+81-3-3582-0111", "x": 275.0, "y": 592.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "French", "x": 253.0, "y": 580.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Software Engineer", "x": 310.0, "y": 580.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "1990", "x": 268.0, "y": 565.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "03", "x": 340.0, "y": 565.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "15", "x": 400.0, "y": 565.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "20FR12345", "x": 253.0, "y": 547.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "0", "x": 310.0, "y": 536.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 403.0, "y": 476.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 403.0, "y": 473.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 403.0, "y": 470.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 403.0, "y": 468.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 403.0, "y": 466.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 403.0, "y": 462.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 403.0, "y": 336.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 403.0, "y": 268.0, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "Sophie Martin", "x": 253.0, "y": 112.0, "page": 0, "font_size": 10, "type": "text"}
+        {"value": "AF274", "x": 256.0, "y": 666.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "Paris CDG", "x": 365.0, "y": 666.0, "page": 0, "font_size": 8, "type": "text"},
+
+        {"value": "2026", "x": 270.0, "y": 652.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "04", "x": 338.0, "y": 652.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "01", "x": 388.0, "y": 652.0, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "MARTIN", "x": 235.0, "y": 642.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "Sophie Louise", "x": 315.0, "y": 642.0, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "Hotel Okura, 2-10-4 Toranomon, Minato-ku, Tokyo", "x": 235.0, "y": 629.0, "page": 0, "font_size": 6.5, "type": "text"},
+
+        {"value": "+81-3-3582-0111", "x": 258.0, "y": 606.0, "page": 0, "font_size": 8, "type": "text"},
+
+        {"value": "French", "x": 235.0, "y": 580.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "Software Engineer", "x": 305.0, "y": 580.0, "page": 0, "font_size": 7.5, "type": "text"},
+
+        {"value": "1990", "x": 248.0, "y": 564.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "03", "x": 328.0, "y": 564.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "15", "x": 385.0, "y": 564.0, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "20FR12345", "x": 236.0, "y": 548.0, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "0", "x": 265.0, "y": 527.0, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "X", "x": 401.0, "y": 477.0, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 401.0, "y": 459.0, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 401.0, "y": 445.0, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 401.0, "y": 432.0, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 401.0, "y": 419.0, "page": 0, "font_size": 6, "type": "checkbox"},
+        {"value": "X", "x": 401.0, "y": 399.0, "page": 0, "font_size": 6, "type": "checkbox"},
+
+        {"value": "X", "x": 401.0, "y": 327.0, "page": 0, "font_size": 6, "type": "checkbox"},
+
+        {"value": "X", "x": 388.0, "y": 255.0, "page": 0, "font_size": 6, "type": "checkbox"},
+
+        {"value": "Sophie Martin", "x": 235.0, "y": 100.0, "page": 0, "font_size": 10, "type": "text"}
     ]
 }

@@ -61,6 +61,17 @@ def fill_acroform(reader, writer, fields_spec):
     # Clone the entire document to preserve AcroForm
     writer.clone_reader_document_root(reader)
 
+    # Strip XFA if present — XFA overrides AcroForm visual rendering,
+    # and pypdf only updates AcroForm values (not XFA XML). Removing XFA
+    # forces PDF viewers to render from the AcroForm layer instead.
+    root = writer._root_object
+    if "/AcroForm" in root:
+        af = root["/AcroForm"]
+        if hasattr(af, "get_object"):
+            af = af.get_object()
+        if "/XFA" in af:
+            del af["/XFA"]
+
     # Update form fields on each page
     if field_values:
         for page in writer.pages:

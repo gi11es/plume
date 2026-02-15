@@ -1,5 +1,5 @@
 {
-    "strategy": "acroform",
+    "strategy": "both",
     "fields": [
         {"name": "topmostSubform[0].Page1[0].Step1a[0].f1_01[0]", "value": "Sophie", "type": "text"},
         {"name": "topmostSubform[0].Page1[0].Step1a[0].f1_02[0]", "value": "Louise", "type": "text"},
@@ -17,8 +17,11 @@
         {"name": "topmostSubform[0].Page1[0].f1_10[0]", "value": "", "type": "text"},
         {"name": "topmostSubform[0].Page1[0].f1_11[0]", "value": "", "type": "text"},
         {"name": "topmostSubform[0].Page1[0].c1_3[0]", "value": "Off", "type": "checkbox"},
-        {"name": "topmostSubform[0].Page1[0].f1_12[0]", "value": "", "type": "text"},
-        {"name": "topmostSubform[0].Page1[0].f1_13[0]", "value": "Martin Digital Consulting LLC", "type": "text"},
-        {"name": "topmostSubform[0].Page1[0].f1_14[0]", "value": "12-3456789", "type": "text"}
+        {"name": "topmostSubform[0].Page1[0].f1_12[0]", "value": "Martin Digital Consulting LLC, 742 Evergreen Terrace, Springfield, IL 62704", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_13[0]", "value": "03/01/2026", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_14[0]", "value": "12-3456789", "type": "text"},
+
+        {"type": "signature", "image_path": "tests/fixtures/test_signature.png", "x": 120, "y": 90, "page": 0, "width": 150, "height": 35},
+        {"type": "text", "value": "02/15/2026", "x": 470, "y": 92, "page": 0, "font_size": 10}
     ]
 }

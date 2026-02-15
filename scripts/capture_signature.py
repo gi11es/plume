@@ -25,6 +25,7 @@ from PIL import Image, ImageDraw
 def capture_signature(output_path: str, width: int = 600, height: int = 200) -> bool:
     """Open a signature capture window. Returns True if signature was saved."""
     result = {"saved": False}
+    scale = 3  # supersample factor for smooth anti-aliased export
 
     root = tk.Tk()
     root.title("Sign here")
@@ -35,8 +36,8 @@ def capture_signature(output_path: str, width: int = 600, height: int = 200) -> 
                        cursor="pencil", highlightthickness=1, highlightbackground="#999")
     canvas.pack(padx=10, pady=(10, 5))
 
-    # Parallel PIL image for pixel-accurate export (transparent background)
-    pil_image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    # Parallel PIL image at 3x resolution for smooth anti-aliased export
+    pil_image = Image.new("RGBA", (width * scale, height * scale), (0, 0, 0, 0))
     draw = ImageDraw.Draw(pil_image)
 
     # Stroke tracking
@@ -54,8 +55,9 @@ def capture_signature(output_path: str, width: int = 600, height: int = 200) -> 
             # Draw on tkinter canvas (visual feedback)
             canvas.create_line(x0, y0, x1, y1, fill="black", width=2, smooth=True,
                                capstyle=tk.ROUND, joinstyle=tk.ROUND)
-            # Draw on PIL image (export)
-            draw.line([(x0, y0), (x1, y1)], fill=(0, 0, 0, 255), width=2)
+            # Draw on PIL image at 3x scale for smooth export
+            draw.line([(x0 * scale, y0 * scale), (x1 * scale, y1 * scale)],
+                      fill=(0, 0, 0, 255), width=2 * scale)
         last_point[0] = x1
         last_point[1] = y1
         stroke_count[0] += 1
@@ -67,7 +69,7 @@ def capture_signature(output_path: str, width: int = 600, height: int = 200) -> 
     def clear():
         canvas.delete("all")
         nonlocal pil_image, draw
-        pil_image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+        pil_image = Image.new("RGBA", (width * scale, height * scale), (0, 0, 0, 0))
         draw = ImageDraw.Draw(pil_image)
         stroke_count[0] = 0
 
@@ -75,18 +77,20 @@ def capture_signature(output_path: str, width: int = 600, height: int = 200) -> 
         if stroke_count[0] < 5:
             # Too few strokes — probably accidental click
             return
+        # Downscale from 3x to canvas size with LANCZOS for smooth anti-aliasing
+        downscaled = pil_image.resize((width, height), Image.LANCZOS)
         # Crop to bounding box of actual content (with padding)
-        bbox = pil_image.getbbox()
+        bbox = downscaled.getbbox()
         if bbox:
             pad = 10
             x0 = max(0, bbox[0] - pad)
             y0 = max(0, bbox[1] - pad)
             x1 = min(width, bbox[2] + pad)
             y1 = min(height, bbox[3] + pad)
-            cropped = pil_image.crop((x0, y0, x1, y1))
+            cropped = downscaled.crop((x0, y0, x1, y1))
             cropped.save(output_path, "PNG")
         else:
-            pil_image.save(output_path, "PNG")
+            downscaled.save(output_path, "PNG")
         result["saved"] = True
         root.destroy()
 

@@ -18,7 +18,7 @@
         {"name": "CB_2", "value": "Off", "type": "checkbox"},
         {"name": "CB_3", "value": "Off", "type": "checkbox"},
         {"name": "CB_4", "value": "Off", "type": "checkbox"},
-        {"name": "Signature of Employee", "value": "Sophie L. Martin", "type": "text"},
+        {"name": "Signature of Employee", "value": "", "type": "text"},
         {"name": "Today's Date mmddyyy", "value": "02/15/2026", "type": "text"},
 
         {"name": "Last Name Family Name from Section 1", "value": "Martin", "type": "text"},
@@ -57,7 +57,7 @@
 
         {"name": "FirstDayEmployed mmddyyyy", "value": "03/01/2026", "type": "text"},
         {"name": "Last Name First Name and Title of Employer or Authorized Representative", "value": "Chen, Robert J., HR Director", "type": "text"},
-        {"name": "Signature of Employer or AR", "value": "Robert J. Chen", "type": "text"},
+        {"name": "Signature of Employer or AR", "value": "", "type": "text"},
         {"name": "S2 Todays Date mmddyyyy", "value": "02/15/2026", "type": "text"},
         {"name": "Employers Business or Org Name", "value": "Martin Digital Consulting LLC", "type": "text"},
         {"name": "Employers Business or Org Address", "value": "742 Evergreen Terrace, Apt 3B, Springfield, IL 62704", "type": "text"},

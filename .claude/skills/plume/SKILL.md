@@ -152,6 +152,8 @@ If the form has a signature field:
    {"type": "signature", "image_path": "/path/to/signature.png", "x": 130, "y": 190, "page": 0, "width": 150, "height": 50}
    ```
 
+6. **Preventing overlap on "both" strategy forms**: When using a signature image overlay on a form that also has AcroForm fields (strategy "both"), set the AcroForm signature text field value to `""` to prevent the typed name from rendering underneath the signature image.
+
 ## Step 6: Create Fill Specification
 
 Create a JSON fill spec at `/tmp/plume_fill_spec.json`:

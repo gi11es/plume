@@ -1,8 +1,25 @@
 {
     "strategy": "overlay",
     "fields": [
-        {"value": "MARTIN", "x": 72.0, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Sophie Louise", "x": 72.0, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "M", "x": 82.8, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "A", "x": 92.7, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "R", "x": 102.6, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "T", "x": 112.6, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "I", "x": 122.5, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "N", "x": 132.4, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
+
+        {"value": "S", "x": 82.8, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "o", "x": 92.7, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "p", "x": 102.6, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "h", "x": 112.6, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "i", "x": 122.5, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "e", "x": 132.4, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "L", "x": 142.3, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "o", "x": 152.2, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "u", "x": 162.2, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "i", "x": 172.1, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "s", "x": 182.0, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "e", "x": 191.9, "y": 180.4, "page": 0, "font_size": 9, "type": "text"},
 
         {"value": "2", "x": 20.4, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},
         {"value": "0", "x": 33.5, "y": 155.3, "page": 0, "font_size": 10, "type": "text"},

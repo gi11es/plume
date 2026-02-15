@@ -51,7 +51,7 @@
 <td><img src="assets/demo_w9_before.png" width="380" alt="Empty W-9"></td>
 <td><img src="assets/demo_w9_after.png" width="380" alt="Filled W-9"></td>
 </tr>
-<tr><td colspan="2" align="center"><em>IRS W-9 &mdash; tax form with nested XFA fields</em></td></tr>
+<tr><td colspan="2" align="center"><em>IRS W-9 &mdash; mixed form: AcroForm fields + graphical signature overlay</em></td></tr>
 </table>
 
 <table>
@@ -176,11 +176,11 @@ pip install pytest
 pytest tests/ -v
 ```
 
-**219 tests** run against **18 real-world PDF forms** across 10 languages:
+**225 tests** run against **18 real-world PDF forms** across 10 languages:
 
 | Form | Type | Language | Fields |
 |------|------|----------|--------|
-| US W-9 (IRS) | AcroForm | English | 23 |
+| US W-9 (IRS) | Mixed | English | 23 + overlay |
 | US W-4 (IRS) | AcroForm | English | 48 |
 | US I-9 (USCIS) | AcroForm | English | 128 |
 | US SF-86 (OPM) | AcroForm | English | 6,197 |

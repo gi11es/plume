@@ -6,7 +6,7 @@
       "filename": "us_w9_acroform.pdf",
       "description": "IRS Form W-9: Request for Taxpayer Identification Number and Certification",
       "language": "en",
-      "type": "acroform",
+      "type": "both",
       "pages": 6,
       "source_url": "https://www.irs.gov/pub/irs-pdf/fw9.pdf",
       "field_count": 23,
@@ -163,7 +163,7 @@
       "notes": "Bilingual German/English form from the Federal Employment Agency. XFA-based with German field names (Telefon, Steuer-ID, Name, Vorname, Geburtsdatum, Geburtsort). Tests non-ASCII field processing. Labels are in both German and English."
     },
     {
-      "filename": "de_en_schengen_visa_mixed.pdf",
+      "filename": "de_en_schengen_visa_graphical.pdf",
       "description": "German Embassy Schengen Visa Application Form (German-English bilingual)",
       "language": "de/en",
       "type": "graphical",

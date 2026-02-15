@@ -1,0 +1,29 @@
+{
+    "strategy": "overlay",
+    "fields": [
+        {"value": "MARTIN", "x": 18.0, "y": 189.0, "page": 0, "font_size": 8, "type": "text"},
+        {"value": "Sophie Louise", "x": 18.0, "y": 175.0, "page": 0, "font_size": 8, "type": "text"},
+        {"value": "20FR12345", "x": 18.0, "y": 162.0, "page": 0, "font_size": 8, "type": "text"},
+        {"value": "AF274", "x": 18.0, "y": 133.0, "page": 0, "font_size": 8, "type": "text"},
+        {"value": "Hotel Sydney, 123 George St, Sydney NSW 2000", "x": 18.0, "y": 117.0, "page": 0, "font_size": 6, "type": "text"},
+        {"value": "NSW", "x": 148.0, "y": 92.0, "page": 0, "font_size": 8, "type": "text"},
+        {"value": "X", "x": 181.0, "y": 83.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 181.0, "y": 56.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 181.0, "y": 44.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 198.0, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 182.0, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 165.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 153.0, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 143.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 117.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 104.0, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 87.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 72.0, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 57.0, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "X", "x": 483.0, "y": 41.5, "page": 0, "font_size": 8, "type": "checkbox"},
+        {"value": "Sophie Martin", "x": 210.0, "y": 25.0, "page": 0, "font_size": 8, "type": "text"},
+        {"value": "01", "x": 326.0, "y": 14.0, "page": 0, "font_size": 7, "type": "text"},
+        {"value": "04", "x": 350.0, "y": 14.0, "page": 0, "font_size": 7, "type": "text"},
+        {"value": "2026", "x": 370.0, "y": 14.0, "page": 0, "font_size": 7, "type": "text"}
+    ]
+}

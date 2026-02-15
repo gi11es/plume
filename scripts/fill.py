@@ -19,7 +19,9 @@ The fill_spec.json format:
             "page": 0,
             "font_size": 10,
             "font": "Helvetica",
-            "type": "text" | "checkbox" | "choice"
+            "type": "text" | "checkbox" | "choice" | "signature",
+            "image_path": "/path/to/sig.png",   # for signature type
+            "width": 150, "height": 50           # for signature type
         }
     ]
 }
@@ -33,6 +35,7 @@ from pathlib import Path
 
 from pypdf import PdfReader, PdfWriter
 from pypdf.generic import IndirectObject
+from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
 
@@ -90,7 +93,15 @@ def create_overlay(fields_spec, page_width, page_height):
         else:
             c.setFillColorRGB(0, 0, 0)  # default black
 
-        if field_type == "checkbox":
+        if field_type == "signature":
+            # Draw a signature image (PNG with transparent background)
+            image_path = field.get("image_path", "")
+            if image_path and Path(image_path).exists():
+                sig_w = field.get("width", 150)
+                sig_h = field.get("height", 50)
+                c.drawImage(ImageReader(image_path), x, y,
+                            width=sig_w, height=sig_h, mask="auto")
+        elif field_type == "checkbox":
             # Draw an X mark
             c.setFont(font_name, font_size)
             c.drawString(x, y, "X")

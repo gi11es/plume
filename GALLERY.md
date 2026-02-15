@@ -105,8 +105,8 @@ Before/after screenshots for all 18 PDF forms in the test suite. Each form is fi
 <td align="center"><strong>Before</strong></td>
 <td align="center"><strong>After</strong></td>
 </tr><tr>
-<td><img src="assets/gallery/de_en_schengen_visa_mixed_before.png" width="380"></td>
-<td><img src="assets/gallery/de_en_schengen_visa_mixed_after.png" width="380"></td>
+<td><img src="assets/gallery/de_en_schengen_visa_graphical_before.png" width="380"></td>
+<td><img src="assets/gallery/de_en_schengen_visa_graphical_after.png" width="380"></td>
 </tr></table>
 
 ### Italian Schengen Visa &mdash; English/Italian

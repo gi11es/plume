@@ -86,6 +86,35 @@ Use `AskUserQuestion` for structured choices (checkboxes, dropdowns). For free t
 
 **Important**: Always confirm the full mapping before filling. The user must approve.
 
+## Step 5b: Handle Signature Fields
+
+If the form has a signature field:
+
+1. Check if a saved signature exists:
+   ```bash
+   ls $PLUME_ROOT/memory/signature.png 2>/dev/null
+   ```
+
+2. If no saved signature, prompt the user to draw one:
+   ```bash
+   python3 $SCRIPTS/capture_signature.py /tmp/plume_signature.png
+   ```
+   This opens a GUI window where the user draws their signature (black on transparent background).
+
+3. After capture, ask the user:
+   - "Would you like to save this signature for future forms?"
+   - If yes: `cp /tmp/plume_signature.png $PLUME_ROOT/memory/signature.png`
+   - If no: use `/tmp/plume_signature.png` for this session only
+
+4. If a saved signature exists, show it to the user (using Read on the PNG) and ask:
+   - "Use your saved signature?" → use `$PLUME_ROOT/memory/signature.png`
+   - "Draw a new one?" → run capture again
+
+5. In the fill spec, use type `"signature"` for signature fields:
+   ```json
+   {"type": "signature", "image_path": "/path/to/signature.png", "x": 130, "y": 190, "page": 0, "width": 150, "height": 50}
+   ```
+
 ## Step 6: Create Fill Specification
 
 Create a JSON fill spec at `/tmp/plume_fill_spec.json`:
@@ -164,4 +193,4 @@ Tell the user:
 - Which strategy was used (AcroForm vs overlay)
 - How many fields were filled
 - Any fields that couldn't be filled automatically
-- Reminder about fields requiring manual action (e.g., handwritten signatures)
+- Whether a signature was captured and saved

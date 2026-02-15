@@ -1,0 +1,26 @@
+{
+    "strategy": "overlay",
+    "fields": [
+        {"value": "MARTIN", "x": 48.0, "y": 622.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "MARTIN", "x": 48.0, "y": 585.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Sophie Louise", "x": 48.0, "y": 548.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "15-03-1990", "x": 48.0, "y": 511.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Paris", "x": 183.0, "y": 511.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "French", "x": 317.0, "y": 511.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "France", "x": 183.0, "y": 483.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "French", "x": 317.0, "y": 483.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "X", "x": 100.0, "y": 455.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "X", "x": 243.0, "y": 455.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "N/A", "x": 48.0, "y": 405.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "N/A", "x": 48.0, "y": 335.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "X", "x": 58.0, "y": 306.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "20FR12345", "x": 48.0, "y": 258.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2023-01-15", "x": 170.0, "y": 258.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2033-01-14", "x": 253.0, "y": 258.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Prefecture de Paris", "x": 333.0, "y": 258.0, "page": 0, "font_size": 8, "type": "text"},
+        {"value": "742 Evergreen Terrace, Springfield IL 62704, sophie.martin@example.com", "x": 48.0, "y": 228.0, "page": 0, "font_size": 7, "type": "text"},
+        {"value": "+1-555-0142", "x": 314.0, "y": 228.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "N/A", "x": 48.0, "y": 181.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Software Engineer", "x": 48.0, "y": 130.0, "page": 0, "font_size": 10, "type": "text"}
+    ]
+}

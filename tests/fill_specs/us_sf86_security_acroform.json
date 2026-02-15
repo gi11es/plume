@@ -1,0 +1,32 @@
+{
+    "strategy": "acroform",
+    "gallery_page": 4,
+    "fields": [
+        {"name": "form1[0].Sections1-6[0].section5[0].TextField11[0]", "value": "Dupont", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].section5[0].TextField11[1]", "value": "Sophie", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].section5[0].TextField11[2]", "value": "Louise", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].section5[0].TextField11[3]", "value": "Changed to married name", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].section5[0].#area[0].From_Datefield_Name_2[0]", "value": "01/1990", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].section5[0].#area[0].To_Datefield_Name_2[0]", "value": "06/2018", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].section5[0].#field[7]", "value": "1", "type": "checkbox"},
+        {"name": "form1[0].Sections1-6[0].section5[0].#field[8]", "value": "1", "type": "checkbox"},
+        {"name": "form1[0].Sections1-6[0].section5[0].#field[9]", "value": "Off", "type": "checkbox"},
+        {"name": "form1[0].Sections1-6[0].SSN[0]", "value": "123-45-6789", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].TextField11[0]", "value": "Martin", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].TextField11[1]", "value": "Sophie", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].TextField11[2]", "value": "Louise", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].TextField11[3]", "value": "03/15/1990", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].TextField11[4]", "value": "Springfield", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].DropDownList1[0]", "value": "United States", "type": "choice"},
+        {"name": "form1[0].Sections1-6[0].School6_State[0]", "value": "IL", "type": "choice"},
+        {"name": "form1[0].Sections1-6[0].CheckBox1[0]", "value": "Off", "type": "checkbox"},
+        {"name": "form1[0].Sections1-6[0].SSN[1]", "value": "123-45-6789", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].TextField11[5]", "value": "5'7\"", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].DropDownList10[0]", "value": "Brown", "type": "choice"},
+        {"name": "form1[0].Sections1-6[0].DropDownList9[0]", "value": "Brown", "type": "choice"},
+        {"name": "form1[0].Sections1-6[0].DropDownList8[0]", "value": "1", "type": "choice"},
+        {"name": "form1[0].Sections1-6[0].DropDownList7[0]", "value": "7", "type": "choice"},
+        {"name": "form1[0].Sections1-6[0].From_Datefield_Name_2[0]", "value": "03/15/1990", "type": "text"},
+        {"name": "form1[0].Sections1-6[0].#field[18]", "value": "Off", "type": "checkbox"}
+    ]
+}

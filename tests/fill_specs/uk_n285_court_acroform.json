@@ -1,0 +1,13 @@
+{
+    "strategy": "acroform",
+    "gallery_page": 1,
+    "fields": [
+        {"name": "In the [name] court", "value": "Springfield County Court", "type": "text"},
+        {"name": "Claim no", "value": "SC-2025-00142", "type": "text"},
+        {"name": "Claimant", "value": "Sophie Louise Martin", "type": "text"},
+        {"name": "Defendant", "value": "Acme Holdings Ltd", "type": "text"},
+        {"name": "I: name and occupation of deponent", "value": "Sophie Louise Martin, Digital Consultant", "type": "text"},
+        {"name": "Address", "value": "742 Evergreen Terrace, Apt 3B, Springfield, IL 62704", "type": "text"},
+        {"name": "Make oath and say as follows:", "value": "I, Sophie Louise Martin, of 742 Evergreen Terrace, Apt 3B, Springfield, IL 62704, do solemnly declare and affirm the following statements to be true and accurate to the best of my knowledge and belief.", "type": "text"}
+    ]
+}

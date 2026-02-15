@@ -169,6 +169,143 @@ class TestAcroFormFill:
 
 
 # ---------------------------------------------------------------------------
+# Signature overlay
+# ---------------------------------------------------------------------------
+
+TEST_SIGNATURE = FIXTURES_DIR / "test_signature.png"
+
+
+class TestSignatureFill:
+    """Test signature image overlay integration."""
+
+    def test_signature_overlay_creates_output(self, tmp_output):
+        """A signature field in the spec produces a valid filled PDF."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "signed.pdf"
+
+        spec = make_spec(tmp_output, {
+            "strategy": "overlay",
+            "fields": [
+                {"type": "signature", "image_path": str(TEST_SIGNATURE),
+                 "x": 100, "y": 200, "page": 0, "width": 150, "height": 50},
+            ],
+        })
+
+        result = run_fill(pdf_path, spec, output_path, "overlay")
+        assert result["status"] == "success"
+        assert output_path.exists()
+        assert output_path.stat().st_size > 0
+
+    def test_signature_preserves_pages(self, tmp_output):
+        """Signature overlay doesn't add or remove pages."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "signed.pdf"
+        original = PdfReader(str(pdf_path))
+
+        spec = make_spec(tmp_output, {
+            "strategy": "overlay",
+            "fields": [
+                {"type": "signature", "image_path": str(TEST_SIGNATURE),
+                 "x": 100, "y": 200, "page": 0, "width": 150, "height": 50},
+            ],
+        })
+
+        run_fill(pdf_path, spec, output_path, "overlay")
+        filled = PdfReader(str(output_path))
+        assert len(filled.pages) == len(original.pages)
+
+    def test_signature_with_text_fields(self, tmp_output):
+        """Signature field works alongside regular text fields."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "signed.pdf"
+
+        spec = make_spec(tmp_output, {
+            "strategy": "overlay",
+            "fields": [
+                {"value": "Sophie Martin", "x": 100, "y": 700, "page": 0,
+                 "font_size": 10, "type": "text"},
+                {"type": "signature", "image_path": str(TEST_SIGNATURE),
+                 "x": 100, "y": 200, "page": 0, "width": 150, "height": 50},
+                {"value": "02/15/2026", "x": 300, "y": 200, "page": 0,
+                 "font_size": 10, "type": "text"},
+            ],
+        })
+
+        result = run_fill(pdf_path, spec, output_path, "overlay")
+        assert result["fields_filled"] == 3
+        assert output_path.stat().st_size > 0
+
+    def test_signature_in_both_strategy(self, tmp_output):
+        """Signature works in 'both' strategy (AcroForm + overlay with signature)."""
+        if not ACROFORM_PDFS:
+            pytest.skip("No AcroForm test PDFs")
+        entry = ACROFORM_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "signed.pdf"
+
+        from extract import extract_structure
+        structure = extract_structure(str(pdf_path))
+        text_fields = [f for f in structure["acroform_fields"]
+                       if f["type"] == "text" and not f["readonly"]]
+        if not text_fields:
+            pytest.skip("No writable text fields")
+
+        spec = make_spec(tmp_output, {
+            "strategy": "both",
+            "fields": [
+                {"name": text_fields[0]["name"], "value": "Plume Test", "type": "text"},
+                {"type": "signature", "image_path": str(TEST_SIGNATURE),
+                 "x": 100, "y": 200, "page": 0, "width": 150, "height": 50},
+            ],
+        })
+
+        result = run_fill(pdf_path, spec, output_path, "both")
+        assert result["status"] == "success"
+        assert result["strategy"] == "both"
+
+    def test_missing_signature_image_skipped(self, tmp_output):
+        """A signature field with a non-existent image path is silently skipped."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "signed.pdf"
+
+        spec = make_spec(tmp_output, {
+            "strategy": "overlay",
+            "fields": [
+                {"type": "signature", "image_path": "/nonexistent/sig.png",
+                 "x": 100, "y": 200, "page": 0, "width": 150, "height": 50},
+            ],
+        })
+
+        result = run_fill(pdf_path, spec, output_path, "overlay")
+        assert result["status"] == "success"
+
+    def test_signature_png_is_transparent(self):
+        """Verify the test signature has a transparent background."""
+        from PIL import Image
+        img = Image.open(str(TEST_SIGNATURE))
+        assert img.mode == "RGBA", f"Expected RGBA, got {img.mode}"
+        # Check that some pixels are fully transparent
+        pixels = list(img.get_flattened_data())
+        transparent = [p for p in pixels if p[3] == 0]
+        assert len(transparent) > 0, "Signature should have transparent pixels"
+        # Check that some pixels are black (ink)
+        black = [p for p in pixels if p[0] < 50 and p[1] < 50 and p[2] < 50 and p[3] > 200]
+        assert len(black) > 0, "Signature should have black ink pixels"
+
+
+# ---------------------------------------------------------------------------
 # Auto strategy detection
 # ---------------------------------------------------------------------------
 

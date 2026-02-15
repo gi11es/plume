@@ -1,0 +1,30 @@
+{
+    "strategy": "both",
+    "fields": [
+        {"name": "topmostSubform[0].Page1[0].f1_01[0]", "value": "Sophie Louise Martin", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_02[0]", "value": "Martin Digital Consulting LLC", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[0]", "value": "1", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[1]", "value": "Off", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[2]", "value": "Off", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[3]", "value": "Off", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[4]", "value": "Off", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[5]", "value": "Off", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].f1_03[0]", "value": "", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_1[6]", "value": "Off", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].f1_04[0]", "value": "", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].Boxes3a-b_ReadOrder[0].c1_2[0]", "value": "Off", "type": "checkbox"},
+        {"name": "topmostSubform[0].Page1[0].f1_05[0]", "value": "", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_06[0]", "value": "", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].Address_ReadOrder[0].f1_07[0]", "value": "742 Evergreen Terrace, Apt 3B", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].Address_ReadOrder[0].f1_08[0]", "value": "Springfield, IL 62704", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_09[0]", "value": "", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_10[0]", "value": "", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_11[0]", "value": "123", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_12[0]", "value": "45", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_13[0]", "value": "6789", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_14[0]", "value": "12", "type": "text"},
+        {"name": "topmostSubform[0].Page1[0].f1_15[0]", "value": "3456789", "type": "text"},
+        {"value": "Sophie L. Martin", "x": 130, "y": 199, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "02/15/2026", "x": 410, "y": 199, "page": 0, "font_size": 10, "type": "text"}
+    ]
+}

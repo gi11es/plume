@@ -1,0 +1,26 @@
+{
+    "strategy": "acroform",
+    "fields": [
+        {"name": "ESTATAL", "value": "Yes", "type": "checkbox"},
+        {"name": "AUTONOMICO", "value": "Off", "type": "checkbox"},
+        {"name": "LOCAL", "value": "Off", "type": "checkbox"},
+        {"name": "NIF ORGANISMO PUBLICO", "value": "S2826000C", "type": "text"},
+        {"name": "DENOMINACION ORGANISMO PUBLICO", "value": "Martin Digital Consulting SL", "type": "text"},
+        {"name": "NIF ORGANO", "value": "B12345678", "type": "text"},
+        {"name": "DENOMINACION ORGANO", "value": "Departamento de Administraci\u00f3n", "type": "text"},
+        {"name": "MUNICIPIO", "value": "Springfield", "type": "text"},
+        {"name": "PROVINCIA ORGANISMO PUBLICO", "value": "Illinois", "type": "text"},
+        {"name": "CODIGO POSTAL ORGANISMO PUBLICO", "value": "62704", "type": "text"},
+        {"name": "NIF TITULAR ORGANO", "value": "X1234567L", "type": "text"},
+        {"name": "DENOMINACION TITULAR DEL ORGANO", "value": "Martin Dupont, Sophie Louise", "type": "text"},
+        {"name": "CARGO TITULAR ORGANO", "value": "Directora General", "type": "text"},
+        {"name": "DATOS DEL NOMBRAMIENTO TITULAR ORGANO", "value": "Nombramiento por acuerdo de 01/06/2020", "type": "text"},
+        {"name": "TELEFONO TITULAR ORGANO", "value": "+1-555-0142", "type": "text"},
+        {"name": "EMAIL TITULAR ORGANO", "value": "sophie.martin@example.com", "type": "text"},
+        {"name": "NIF PERSONA DE CONTACTO", "value": "X1234567L", "type": "text"},
+        {"name": "APELLIDOS Y NOMBRE PERSONA DE CONTACTO", "value": "Martin Dupont, Sophie Louise", "type": "text"},
+        {"name": "CARGO PERSONA DE CONTACTO", "value": "Directora General", "type": "text"},
+        {"name": "TELEFONO PERSONA DE CONTACTO", "value": "+1-555-0142", "type": "text"},
+        {"name": "EMAIL PERSONA DE CONTACTO", "value": "sophie.martin@example.com", "type": "text"}
+    ]
+}

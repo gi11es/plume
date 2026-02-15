@@ -24,6 +24,7 @@ Thumbs.db
 
 # User data (ships with example data, real data stays local)
 memory/user-info.json
+memory/signature.png
 
 # Filled PDFs (outputs)
 *_filled.pdf

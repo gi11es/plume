@@ -1,0 +1,22 @@
+{
+    "strategy": "overlay",
+    "fields": [
+        {"value": "MARTIN", "x": 47.0, "y": 598.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "MARTIN", "x": 47.0, "y": 568.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Sophie Louise", "x": 47.0, "y": 538.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "15/03/1990", "x": 47.0, "y": 508.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Paris", "x": 47.0, "y": 478.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "France", "x": 47.0, "y": 449.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "French", "x": 47.0, "y": 420.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "French", "x": 47.0, "y": 383.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "N/A", "x": 47.0, "y": 363.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "X", "x": 254.0, "y": 354.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "X", "x": 172.0, "y": 325.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "N/A", "x": 47.0, "y": 258.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "N/A", "x": 47.0, "y": 163.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "X", "x": 172.0, "y": 155.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "20FR12345", "x": 47.0, "y": 88.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2023-01-15", "x": 47.0, "y": 58.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2033-01-14", "x": 47.0, "y": 29.0, "page": 0, "font_size": 10, "type": "text"}
+    ]
+}

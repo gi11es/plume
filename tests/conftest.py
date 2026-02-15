@@ -27,7 +27,7 @@ def _load_manifest():
 
 
 ALL_FORMS = _load_manifest()
-ACROFORM_PDFS = [e for e in ALL_FORMS if e.get("type") in ("acroform", "mixed")]
+ACROFORM_PDFS = [e for e in ALL_FORMS if e.get("type") in ("acroform", "mixed", "both")]
 GRAPHICAL_PDFS = [e for e in ALL_FORMS if e.get("type") == "graphical"]
 
 

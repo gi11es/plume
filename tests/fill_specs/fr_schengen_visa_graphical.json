@@ -1,0 +1,32 @@
+{
+    "strategy": "overlay",
+    "fields": [
+        {"value": "MARTIN", "x": 68.0, "y": 634.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "MARTIN", "x": 68.0, "y": 605.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Sophie Louise", "x": 68.0, "y": 575.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "1990-03-15", "x": 68.0, "y": 547.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Paris, France", "x": 68.0, "y": 528.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "French", "x": 68.0, "y": 508.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "French", "x": 258.0, "y": 508.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "X", "x": 100.0, "y": 491.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "X", "x": 260.0, "y": 491.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "Jean-Pierre MARTIN", "x": 68.0, "y": 450.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "Marie-Claire DUBOIS", "x": 258.0, "y": 450.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "X", "x": 72.0, "y": 410.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "20FR12345", "x": 68.0, "y": 365.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "Prefecture de Paris", "x": 220.0, "y": 365.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "2023-01-15", "x": 68.0, "y": 346.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "2033-01-14", "x": 220.0, "y": 346.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "N/A", "x": 68.0, "y": 330.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "Software Engineer", "x": 68.0, "y": 307.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "TechCorp GmbH, Friedrichstrasse 100, 10117 Berlin, +49-30-1234567", "x": 68.0, "y": 278.0, "page": 0, "font_size": 7, "type": "text"},
+        {"value": "Germany", "x": 68.0, "y": 237.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "X", "x": 220.0, "y": 249.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "X", "x": 370.0, "y": 249.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "X", "x": 72.0, "y": 184.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "91", "x": 380.0, "y": 175.0, "page": 0, "font_size": 10, "type": "text"},
+        {"value": "None", "x": 68.0, "y": 150.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "N/A", "x": 68.0, "y": 125.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "None", "x": 69.0, "y": 102.0, "page": 0, "font_size": 9, "type": "text"}
+    ]
+}

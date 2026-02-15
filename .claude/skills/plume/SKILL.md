@@ -154,6 +154,16 @@ If the form has a signature field:
 
 6. **Preventing overlap on "both" strategy forms**: When using a signature image overlay on a form that also has AcroForm fields (strategy "both"), set the AcroForm signature text field value to `""` to prevent the typed name from rendering underneath the signature image.
 
+7. **Signature placement — target the blank area**: Signature fields often have a text label
+   (e.g., "Signature of Employee") occupying part of the field. When positioning the signature
+   image, do NOT place it at the field's left edge if a label is there. Instead:
+   - Identify the label text extent (x_start to x_end) and any other text in the row (e.g., "Date")
+   - Place the signature image's x at label_x_end + 10pt (clear of the label)
+   - Set width to fill the available blank space (up to the next label or field edge minus 10pt padding)
+   - Set height to fit within the field row height (typically 15-25pt for standard forms)
+   - The goal: the signature image should occupy the largest blank rectangle in the signing area,
+     with no overlap on any printed text or labels
+
 ## Step 6: Create Fill Specification
 
 Create a JSON fill spec at `/tmp/plume_fill_spec.json`:

@@ -25,6 +25,8 @@ else:
 ")
 SCRIPTS=$PLUME_ROOT/scripts
 MEMORY=$PLUME_ROOT/memory/user-info.json
+PYTHON=$PLUME_ROOT/.venv/bin/python
+if [ ! -x "$PYTHON" ]; then PYTHON=python3; fi
 ```
 
 ## Step 1: Validate Input
@@ -39,7 +41,7 @@ The argument `$ARGUMENTS` is the path to the PDF file.
 
 Run:
 ```bash
-python3 $SCRIPTS/extract.py "$INPUT_PDF" --pretty
+$PYTHON $SCRIPTS/extract.py "$INPUT_PDF" --pretty
 ```
 
 This outputs JSON with:
@@ -58,7 +60,7 @@ Save this output — you'll need it for field mapping.
 If the PDF is graphical (no AcroForm fields, or `recommended_strategy` is "overlay"), run the field detector for more precise positioning:
 
 ```bash
-python3 $SCRIPTS/detect_fields.py "$INPUT_PDF" --all-pages --pretty
+$PYTHON $SCRIPTS/detect_fields.py "$INPUT_PDF" --all-pages --pretty
 ```
 
 This uses multiple detection strategies:
@@ -80,13 +82,13 @@ Check the `confidence` field:
 - **high**: Auto-detection found good field coverage — use detected positions directly
 - **medium/low**: Detection is incomplete — generate a grid overlay for visual positioning:
   ```bash
-  python3 $SCRIPTS/detect_fields.py "$INPUT_PDF" --grid-overlay /tmp/plume_grid.png --page 0
+  $PYTHON $SCRIPTS/detect_fields.py "$INPUT_PDF" --grid-overlay /tmp/plume_grid.png --page 0
   ```
   Then **Read the grid overlay image** to visually determine exact coordinates.
 
 Also generate an annotated image to verify detection accuracy:
 ```bash
-python3 $SCRIPTS/detect_fields.py "$INPUT_PDF" --annotate /tmp/plume_annotated.png --page 0
+$PYTHON $SCRIPTS/detect_fields.py "$INPUT_PDF" --annotate /tmp/plume_annotated.png --page 0
 ```
 Blue boxes = text fields, green = character-box groups/checkboxes, red dots = fill points.
 
@@ -148,7 +150,7 @@ If the form has a signature field:
 
 3. If no saved signature, prompt the user to draw one:
    ```bash
-   python3 $SCRIPTS/capture_signature.py /tmp/plume_signature.png
+   $PYTHON $SCRIPTS/capture_signature.py /tmp/plume_signature.png
    ```
    This opens a GUI window where the user draws their signature (black on transparent background).
 
@@ -270,7 +272,7 @@ See `references/pdf-coordinate-guide.md` for detailed positioning guidance.
 ## Step 7: Fill the PDF
 
 ```bash
-python3 $SCRIPTS/fill.py "$INPUT_PDF" /tmp/plume_fill_spec.json "$OUTPUT_PDF"
+$PYTHON $SCRIPTS/fill.py "$INPUT_PDF" /tmp/plume_fill_spec.json "$OUTPUT_PDF"
 ```
 
 Set `OUTPUT_PDF` to the input path with `_filled` suffix (e.g., `form_filled.pdf`).
@@ -286,7 +288,7 @@ Set `OUTPUT_PDF` to the input path with `_filled` suffix (e.g., `form_filled.pdf
 ## Step 9: Verify — Programmatic Check
 
 ```bash
-python3 $SCRIPTS/verify.py "$OUTPUT_PDF" /tmp/plume_fill_spec.json --pretty
+$PYTHON $SCRIPTS/verify.py "$OUTPUT_PDF" /tmp/plume_fill_spec.json --pretty
 ```
 
 Review the pass/fail report.

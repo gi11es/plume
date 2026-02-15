@@ -1,26 +1,182 @@
 {
     "strategy": "overlay",
     "fields": [
-        {"value": "MARTIN", "x": 52.0, "y": 612.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "MARTIN", "x": 52.0, "y": 575.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "Sophie Louise", "x": 52.0, "y": 538.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "15-03-1990", "x": 52.0, "y": 508.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Paris", "x": 186.0, "y": 508.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "French", "x": 320.0, "y": 508.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "France", "x": 186.0, "y": 495.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "French", "x": 320.0, "y": 495.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 90.0, "y": 449.0, "page": 0, "font_size": 10, "type": "checkbox"},
-        {"value": "X", "x": 240.0, "y": 449.0, "page": 0, "font_size": 10, "type": "checkbox"},
-        {"value": "N/A", "x": 52.0, "y": 380.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "N/A", "x": 52.0, "y": 332.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "X", "x": 56.0, "y": 291.0, "page": 0, "font_size": 10, "type": "checkbox"},
-        {"value": "20FR12345", "x": 52.0, "y": 253.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "2023-01-15", "x": 172.0, "y": 253.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "2033-01-14", "x": 256.0, "y": 253.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Prefecture de Paris", "x": 336.0, "y": 253.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "742 Evergreen Terrace, Springfield IL 62704, sophie.martin@example.com", "x": 52.0, "y": 218.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "+1-555-0142", "x": 316.0, "y": 218.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 52.0, "y": 165.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "Software Engineer", "x": 52.0, "y": 128.0, "page": 0, "font_size": 10, "type": "text"}
+        {
+            "type": "photo",
+            "image_path": "tests/fixtures/test_photo.png",
+            "x": 495,
+            "y": 700,
+            "page": 0,
+            "width": 80,
+            "height": 100
+        },
+        {
+            "value": "MARTIN",
+            "x": 52.0,
+            "y": 612.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "MARTIN",
+            "x": 52.0,
+            "y": 575.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Louise",
+            "x": 52.0,
+            "y": 538.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "15-03-1990",
+            "x": 52.0,
+            "y": 508.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Paris",
+            "x": 186.0,
+            "y": 508.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 320.0,
+            "y": 508.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "France",
+            "x": 186.0,
+            "y": 495.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 320.0,
+            "y": 495.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 90.0,
+            "y": 449.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 310.0,
+            "y": 449.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "N/A",
+            "x": 52.0,
+            "y": 380.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 52.0,
+            "y": 332.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 56.0,
+            "y": 291.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "checkbox"
+        },
+        {
+            "value": "20FR12345",
+            "x": 52.0,
+            "y": 253.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2023-01-15",
+            "x": 172.0,
+            "y": 253.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2033-01-14",
+            "x": 256.0,
+            "y": 253.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Prefecture de Paris",
+            "x": 336.0,
+            "y": 253.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "742 Evergreen Terrace, Springfield IL 62704, sophie.martin@example.com",
+            "x": 52.0,
+            "y": 218.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "+1-555-0142",
+            "x": 316.0,
+            "y": 218.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 52.0,
+            "y": 165.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "Software Engineer",
+            "x": 52.0,
+            "y": 128.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        }
     ]
 }

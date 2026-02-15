@@ -1,57 +1,422 @@
 {
     "strategy": "overlay",
     "fields": [
-        {"value": "MARTIN", "x": 61.5, "y": 653.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "MARTIN", "x": 61.5, "y": 632.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "Sophie Louise", "x": 61.5, "y": 613.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "1990-03-15", "x": 61.5, "y": 594.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 271.5, "y": 594.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Paris, France", "x": 61.5, "y": 574.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "French", "x": 61.5, "y": 553.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "French", "x": 249.8, "y": 553.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 106.3, "y": 531.2, "page": 0, "font_size": 7, "type": "checkbox"},
-        {"value": "X", "x": 251.7, "y": 531.2, "page": 0, "font_size": 7, "type": "checkbox"},
-        {"value": "Jean-Pierre MARTIN", "x": 61.5, "y": 500.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Marie-Claire DUBOIS", "x": 249.8, "y": 500.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 65.7, "y": 471.2, "page": 0, "font_size": 7, "type": "checkbox"},
-        {"value": "20FR12345", "x": 61.5, "y": 419.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Prefecture de Paris", "x": 186.8, "y": 419.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "2023-01-15", "x": 61.5, "y": 400.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "2033-01-14", "x": 186.8, "y": 400.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 61.5, "y": 374.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Software Engineer", "x": 61.5, "y": 348.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "TechCorp GmbH, Friedrichstrasse 100, 10117 Berlin", "x": 61.5, "y": 322.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "Tel: +49-30-1234567", "x": 61.5, "y": 312.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "Germany", "x": 61.5, "y": 272.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 215.0, "y": 257.5, "page": 0, "font_size": 7, "type": "checkbox"},
-        {"value": "X", "x": 366.5, "y": 277.0, "page": 0, "font_size": 7, "type": "checkbox"},
-        {"value": "X", "x": 63.5, "y": 214.8, "page": 0, "font_size": 7, "type": "checkbox"},
-        {"value": "91", "x": 370.0, "y": 217.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Schengen visa C, 2022-06-01 to 2022-09-01", "x": 61.5, "y": 185.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "N/A", "x": 61.5, "y": 150.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Berlin, June 2022 - September 2022", "x": 61.5, "y": 122.0, "page": 0, "font_size": 8, "type": "text"},
-
-        {"value": "X", "x": 119.0, "y": 781.0, "page": 1, "font_size": 7, "type": "checkbox"},
-        {"value": "2024-03-01", "x": 65.0, "y": 720.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "2024-06-01", "x": 267.5, "y": 720.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "Berlin Tegel", "x": 68.0, "y": 706.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "Flight", "x": 267.5, "y": 706.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "TechCorp GmbH", "x": 61.5, "y": 652.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "+49-30-1234567", "x": 362.0, "y": 652.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "Friedrichstrasse 100, 10117 Berlin, Germany", "x": 61.5, "y": 620.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "info@techcorp.de", "x": 362.0, "y": 620.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "X", "x": 60.5, "y": 574.8, "page": 1, "font_size": 7, "type": "checkbox"},
-        {"value": "X", "x": 63.5, "y": 529.8, "page": 1, "font_size": 7, "type": "checkbox"},
-        {"value": "X", "x": 204.5, "y": 529.8, "page": 1, "font_size": 7, "type": "checkbox"},
-        {"value": "Valid until 2024-06-01", "x": 236.5, "y": 519.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "N/A", "x": 61.5, "y": 482.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 280.0, "y": 482.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 61.5, "y": 458.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 227.0, "y": 458.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 348.0, "y": 458.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "15 Rue de Rivoli, 75001 Paris, France", "x": 61.5, "y": 140.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "+33-6-12345678", "x": 370.0, "y": 140.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "Paris, 2024-02-15", "x": 61.5, "y": 95.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "Sophie Martin", "x": 300.0, "y": 95.0, "page": 1, "font_size": 9, "type": "text"}
+        {
+            "type": "photo",
+            "image_path": "tests/fixtures/test_photo.png",
+            "x": 35,
+            "y": 700,
+            "page": 0,
+            "width": 95,
+            "height": 105
+        },
+        {
+            "value": "MARTIN",
+            "x": 61.5,
+            "y": 653.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "MARTIN",
+            "x": 61.5,
+            "y": 632.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Louise",
+            "x": 61.5,
+            "y": 613.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "1990-03-15",
+            "x": 61.5,
+            "y": 594.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 271.5,
+            "y": 594.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Paris, France",
+            "x": 61.5,
+            "y": 574.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 61.5,
+            "y": 553.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 249.8,
+            "y": 553.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 106.3,
+            "y": 531.2,
+            "page": 0,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 297,
+            "y": 531.2,
+            "page": 0,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "Jean-Pierre MARTIN",
+            "x": 61.5,
+            "y": 500.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Marie-Claire DUBOIS",
+            "x": 249.8,
+            "y": 500.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 65.7,
+            "y": 471.2,
+            "page": 0,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "20FR12345",
+            "x": 61.5,
+            "y": 419.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Prefecture de Paris",
+            "x": 186.8,
+            "y": 419.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2023-01-15",
+            "x": 61.5,
+            "y": 400.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2033-01-14",
+            "x": 186.8,
+            "y": 400.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 61.5,
+            "y": 374.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Software Engineer",
+            "x": 61.5,
+            "y": 348.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "TechCorp GmbH, Friedrichstrasse 100, 10117 Berlin",
+            "x": 61.5,
+            "y": 322.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "Tel: +49-30-1234567",
+            "x": 61.5,
+            "y": 312.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "Germany",
+            "x": 61.5,
+            "y": 272.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 215.0,
+            "y": 257.5,
+            "page": 0,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 366.5,
+            "y": 277.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 63.5,
+            "y": 214.8,
+            "page": 0,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "91",
+            "x": 370.0,
+            "y": 217.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Schengen visa C, 2022-06-01 to 2022-09-01",
+            "x": 61.5,
+            "y": 185.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 61.5,
+            "y": 150.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Berlin, June 2022 - September 2022",
+            "x": 61.5,
+            "y": 122.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 119.0,
+            "y": 781.0,
+            "page": 1,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "2024-03-01",
+            "x": 65.0,
+            "y": 720.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2024-06-01",
+            "x": 267.5,
+            "y": 720.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Berlin Tegel",
+            "x": 68.0,
+            "y": 706.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Flight",
+            "x": 267.5,
+            "y": 706.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "TechCorp GmbH",
+            "x": 61.5,
+            "y": 652.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "+49-30-1234567",
+            "x": 362.0,
+            "y": 652.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Friedrichstrasse 100, 10117 Berlin, Germany",
+            "x": 61.5,
+            "y": 620.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "info@techcorp.de",
+            "x": 362.0,
+            "y": 620.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 60.5,
+            "y": 574.8,
+            "page": 1,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 63.5,
+            "y": 529.8,
+            "page": 1,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 204.5,
+            "y": 529.8,
+            "page": 1,
+            "font_size": 7,
+            "type": "checkbox"
+        },
+        {
+            "value": "Valid until 2024-06-01",
+            "x": 236.5,
+            "y": 519.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "MARTIN",
+            "x": 61.5,
+            "y": 482.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "BERNARD",
+            "x": 280.0,
+            "y": 482.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Thomas",
+            "x": 61.5,
+            "y": 458.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "22/07/1988",
+            "x": 227.0,
+            "y": 458.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Lyon, France",
+            "x": 348.0,
+            "y": 458.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "15 Rue de Rivoli, 75001 Paris, France",
+            "x": 61.5,
+            "y": 140.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "+33-6-12345678",
+            "x": 370.0,
+            "y": 140.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Paris, 2024-02-15",
+            "x": 61.5,
+            "y": 95.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Martin",
+            "x": 300.0,
+            "y": 95.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        }
     ]
 }

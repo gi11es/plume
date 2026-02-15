@@ -1,52 +1,374 @@
 {
     "strategy": "overlay",
     "fields": [
-        {"value": "MARTIN", "x": 50.0, "y": 597.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "MARTIN", "x": 50.0, "y": 571.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "Sophie Louise", "x": 50.0, "y": 542.0, "page": 0, "font_size": 10, "type": "text"},
-        {"value": "15-03-1990", "x": 50.0, "y": 495.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "Paris", "x": 163.0, "y": 495.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "French", "x": 256.0, "y": 507.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "France", "x": 163.0, "y": 477.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "French", "x": 256.0, "y": 477.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 256.0, "y": 447.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 49.4, "y": 380.0, "page": 0, "font_size": 9, "type": "checkbox"},
-        {"value": "X", "x": 162.9, "y": 394.0, "page": 0, "font_size": 9, "type": "checkbox"},
-        {"value": "N/A", "x": 50.0, "y": 340.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 50.0, "y": 297.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 156.0, "y": 275.0, "page": 0, "font_size": 9, "type": "checkbox"},
-        {"value": "20FR12345", "x": 50.0, "y": 229.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "2023-01-15", "x": 163.0, "y": 229.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "2033-01-14", "x": 256.0, "y": 229.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "France", "x": 340.0, "y": 229.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "NOT APPLICABLE", "x": 50.0, "y": 172.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "NOT APPLICABLE", "x": 50.0, "y": 130.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "15 Rue de Rivoli, 75001 Paris, France, sophie.martin@email.com", "x": 50.0, "y": 87.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "+33-6-12345678", "x": 256.0, "y": 87.0, "page": 0, "font_size": 8, "type": "text"},
-
-        {"value": "X", "x": 49.4, "y": 771.0, "page": 1, "font_size": 9, "type": "checkbox"},
-        {"value": "Software Engineer", "x": 50.0, "y": 716.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "TechCorp GmbH, Friedrichstrasse 100, 10117 Berlin, +49-30-1234567", "x": 50.0, "y": 675.0, "page": 1, "font_size": 7, "type": "text"},
-        {"value": "X", "x": 128.8, "y": 643.0, "page": 1, "font_size": 9, "type": "checkbox"},
-        {"value": "Employment contract in Lisbon office", "x": 50.0, "y": 592.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "PORTUGAL", "x": 50.0, "y": 552.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "Portugal", "x": 256.0, "y": 557.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "X", "x": 49.4, "y": 523.6, "page": 1, "font_size": 9, "type": "checkbox"},
-        {"value": "2024-04-01", "x": 270.0, "y": 497.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "2025-04-01", "x": 300.0, "y": 477.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "NOT APPLICABLE", "x": 50.0, "y": 440.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "NOT APPLICABLE", "x": 50.0, "y": 413.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "N/A", "x": 50.0, "y": 370.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 50.0, "y": 312.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "N/A", "x": 256.0, "y": 312.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "TechCorp Portugal Lda", "x": 50.0, "y": 232.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "Ana Silva, Rua Augusta 100, 1100 Lisbon, ana.silva@techcorp.pt", "x": 50.0, "y": 198.0, "page": 1, "font_size": 7, "type": "text"},
-        {"value": "+351-21-1234567", "x": 256.0, "y": 198.0, "page": 1, "font_size": 8, "type": "text"},
-
-        {"value": "X", "x": 49.4, "y": 796.0, "page": 2, "font_size": 9, "type": "checkbox"},
-        {"value": "X", "x": 49.4, "y": 753.0, "page": 2, "font_size": 9, "type": "checkbox"},
-        {"value": "X", "x": 255.0, "y": 710.0, "page": 2, "font_size": 9, "type": "checkbox"},
-        {"value": "Paris, 2024-02-15", "x": 50.0, "y": 155.0, "page": 2, "font_size": 9, "type": "text"},
-        {"value": "Sophie Martin", "x": 256.0, "y": 155.0, "page": 2, "font_size": 9, "type": "text"}
+        {
+            "type": "photo",
+            "image_path": "tests/fixtures/test_photo.png",
+            "x": 420,
+            "y": 700,
+            "page": 0,
+            "width": 80,
+            "height": 100
+        },
+        {
+            "value": "MARTIN",
+            "x": 50.0,
+            "y": 597.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "MARTIN",
+            "x": 50.0,
+            "y": 571.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Louise",
+            "x": 50.0,
+            "y": 542.0,
+            "page": 0,
+            "font_size": 10,
+            "type": "text"
+        },
+        {
+            "value": "15-03-1990",
+            "x": 50.0,
+            "y": 495.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Paris",
+            "x": 163.0,
+            "y": 495.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 256.0,
+            "y": 507.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "France",
+            "x": 163.0,
+            "y": 477.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 256.0,
+            "y": 477.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 256.0,
+            "y": 447.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 49.4,
+            "y": 380.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 225.0,
+            "y": 394.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "MARTIN Thomas",
+            "x": 50.0,
+            "y": 340.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "French, born BERNARD",
+            "x": 50.0,
+            "y": 297.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 156.0,
+            "y": 275.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "20FR12345",
+            "x": 50.0,
+            "y": 229.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2023-01-15",
+            "x": 163.0,
+            "y": 229.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "2033-01-14",
+            "x": 256.0,
+            "y": 229.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "France",
+            "x": 340.0,
+            "y": 229.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "NOT APPLICABLE",
+            "x": 50.0,
+            "y": 172.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "NOT APPLICABLE",
+            "x": 50.0,
+            "y": 130.0,
+            "page": 0,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "15 Rue de Rivoli, 75001 Paris, France, sophie.martin@email.com",
+            "x": 50.0,
+            "y": 87.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "+33-6-12345678",
+            "x": 256.0,
+            "y": 87.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 49.4,
+            "y": 771.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "Software Engineer",
+            "x": 50.0,
+            "y": 716.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "TechCorp GmbH, Friedrichstrasse 100, 10117 Berlin, +49-30-1234567",
+            "x": 50.0,
+            "y": 675.0,
+            "page": 1,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 128.8,
+            "y": 643.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "Employment contract in Lisbon office",
+            "x": 50.0,
+            "y": 592.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "PORTUGAL",
+            "x": 50.0,
+            "y": 552.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Portugal",
+            "x": 256.0,
+            "y": 557.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 49.4,
+            "y": 523.6,
+            "page": 1,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "2024-04-01",
+            "x": 270.0,
+            "y": 497.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "2025-04-01",
+            "x": 300.0,
+            "y": 477.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "NOT APPLICABLE",
+            "x": 50.0,
+            "y": 440.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "NOT APPLICABLE",
+            "x": 50.0,
+            "y": 413.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 50.0,
+            "y": 370.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 50.0,
+            "y": 312.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 256.0,
+            "y": 312.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "TechCorp Portugal Lda",
+            "x": 50.0,
+            "y": 232.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Ana Silva, Rua Augusta 100, 1100 Lisbon, ana.silva@techcorp.pt",
+            "x": 50.0,
+            "y": 198.0,
+            "page": 1,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "+351-21-1234567",
+            "x": 256.0,
+            "y": 198.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 49.4,
+            "y": 796.0,
+            "page": 2,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 49.4,
+            "y": 753.0,
+            "page": 2,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 255.0,
+            "y": 710.0,
+            "page": 2,
+            "font_size": 9,
+            "type": "checkbox"
+        },
+        {
+            "value": "Paris, 2024-02-15",
+            "x": 50.0,
+            "y": 155.0,
+            "page": 2,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Martin",
+            "x": 256.0,
+            "y": 155.0,
+            "page": 2,
+            "font_size": 9,
+            "type": "text"
+        }
     ]
 }

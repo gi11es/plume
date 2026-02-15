@@ -127,24 +127,38 @@ Use `AskUserQuestion` for structured choices (checkboxes, dropdowns). For free t
 
 If the form has a signature field:
 
-1. Check if a saved signature exists:
+0. First, ask the user whether to include a digital signature:
+   > "Include a digital signature image? Note: some organizations require a wet ink
+   > signature on the physical document. Include digital signature?"
+   If the user declines, skip signature image placement entirely (still fill any
+   AcroForm signature text fields if applicable).
+
+1. Determine whose signature is needed. Forms may require signatures from:
+   - The applicant (default) → stored as `$PLUME_ROOT/memory/signature.png`
+   - A spouse/partner → stored as `$PLUME_ROOT/memory/signature_spouse.png`
+   - A child → stored as `$PLUME_ROOT/memory/signature_child_<firstname>.png`
+   (e.g., `signature_child_lucas.png`)
+
+2. Check if a saved signature exists for the relevant person:
    ```bash
-   ls $PLUME_ROOT/memory/signature.png 2>/dev/null
+   ls $PLUME_ROOT/memory/signature.png 2>/dev/null          # applicant
+   ls $PLUME_ROOT/memory/signature_spouse.png 2>/dev/null    # spouse
+   ls $PLUME_ROOT/memory/signature_child_lucas.png 2>/dev/null  # child (example)
    ```
 
-2. If no saved signature, prompt the user to draw one:
+3. If no saved signature, prompt the user to draw one:
    ```bash
    python3 $SCRIPTS/capture_signature.py /tmp/plume_signature.png
    ```
    This opens a GUI window where the user draws their signature (black on transparent background).
 
-3. After capture, ask the user:
-   - "Would you like to save this signature for future forms?"
-   - If yes: `cp /tmp/plume_signature.png $PLUME_ROOT/memory/signature.png`
-   - If no: use `/tmp/plume_signature.png` for this session only
+4. After capture, ask the user:
+   - "Save this signature for future forms?" → cp to the appropriate path in `$PLUME_ROOT/memory/`
+     (e.g., `signature.png` for applicant, `signature_spouse.png` for spouse)
+   - "Use for this form only?" → use the temp path
 
-4. If a saved signature exists, show it to the user (using Read on the PNG) and ask:
-   - "Use your saved signature?" → use `$PLUME_ROOT/memory/signature.png`
+5. If a saved signature exists, show it to the user (using Read on the PNG) and ask:
+   - "Use your saved signature?" → use the saved path
    - "Draw a new one?" → run capture again
 
 5. In the fill spec, use type `"signature"` for signature fields:
@@ -163,6 +177,51 @@ If the form has a signature field:
    - Set height to fit within the field row height (typically 15-25pt for standard forms)
    - The goal: the signature image should occupy the largest blank rectangle in the signing area,
      with no overlap on any printed text or labels
+
+## Step 5c: Handle ID Photo Fields
+
+If the form has a photo area (common on visa applications, ID forms):
+
+1. Ask the user whether to include a digital photo:
+   > "Include an ID photo in the form? Note: some organizations require a physical
+   > photobooth photo glued to the form. Include digital photo?"
+   If the user declines, skip photo placement entirely.
+
+2. Determine whose photo is needed. Forms may require photos for:
+   - The applicant (default) → stored as `$PLUME_ROOT/memory/photo.png`
+   - A spouse/partner → stored as `$PLUME_ROOT/memory/photo_spouse.png`
+   - A child → stored as `$PLUME_ROOT/memory/photo_child_<firstname>.png`
+   (e.g., `photo_child_lucas.png`)
+
+3. Check if a saved photo exists for the relevant person:
+   ```bash
+   ls $PLUME_ROOT/memory/photo.png 2>/dev/null            # applicant
+   ls $PLUME_ROOT/memory/photo_spouse.png 2>/dev/null      # spouse
+   ls $PLUME_ROOT/memory/photo_child_lucas.png 2>/dev/null # child (example)
+   ```
+
+4. If no saved photo, ask the user to provide one:
+   - Accept a file path to an existing photo
+   - The photo should be a front-facing passport-style image (35x45mm)
+
+5. After receiving the photo, ask the user:
+   - "Save this photo for future forms?" → cp to the appropriate path in `$PLUME_ROOT/memory/`
+     (e.g., `photo.png` for applicant, `photo_spouse.png` for spouse)
+   - "Use for this form only?" → use the provided path
+
+6. If a saved photo exists, show it to the user (using Read on the PNG) and ask:
+   - "Use your saved photo?" → use the saved path
+   - "Provide a different one?" → accept new path
+
+7. In the fill spec, use type `"photo"`:
+   ```json
+   {"type": "photo", "image_path": "/path/to/photo.png", "x": 460, "y": 700, "page": 0, "width": 99, "height": 128}
+   ```
+   Default dimensions: 99pt x 128pt (35mm x 45mm passport photo).
+
+8. **Photo placement**: The photo box is typically a clearly marked rectangle on the form
+   (often labeled "Photo" or "PHOTO"). Place the image to fill the photo box with 2pt
+   inner padding on each side.
 
 ## Step 6: Create Fill Specification
 
@@ -196,6 +255,15 @@ Create a JSON fill spec at `/tmp/plume_fill_spec.json`:
 - **Left padding**: `field_rect_x + 5.6` (text starts ~5.6pt from field left edge)
 - **Checkbox X**: `checkbox_left + 1.8`, `checkbox_bottom + 1.8`
 - **Font**: Helvetica 10pt for text, Helvetica-Bold 10pt for checkbox marks
+
+### Checkbox Positioning Workflow:
+1. Run `detect_fields.py --annotate` to see detected checkbox locations (green boxes)
+2. Match each detected checkbox to its label by reading the PDF visually
+3. Use the `fill_point` from detect_fields.py as the starting position
+4. Verify by generating the filled PDF and reading it — the X must sit inside the checkbox square
+5. Fine-tune: if the X appears offset, adjust x/y by 1-2pt
+6. Common issue: forms with checkboxes at the same y-coordinate for different sections
+   (e.g., Sex and Marital Status side by side) — verify which x-position maps to which option
 
 See `references/pdf-coordinate-guide.md` for detailed positioning guidance.
 

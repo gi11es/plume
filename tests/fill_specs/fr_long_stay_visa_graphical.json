@@ -1,42 +1,302 @@
 {
     "strategy": "overlay",
     "fields": [
-        {"value": "MARTIN", "x": 22.0, "y": 678.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "MARTIN", "x": 22.0, "y": 654.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "Sophie Louise", "x": 22.0, "y": 630.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "15/03/1990", "x": 22.0, "y": 611.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "Paris", "x": 161.0, "y": 611.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "French", "x": 319.0, "y": 611.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "France", "x": 161.0, "y": 590.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "French", "x": 319.0, "y": 590.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "X", "x": 99.3, "y": 560.2, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 163.1, "y": 560.2, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "N/A", "x": 22.0, "y": 520.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "N/A", "x": 22.0, "y": 493.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "X", "x": 161.6, "y": 451.1, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "20FR12345", "x": 22.0, "y": 412.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "15/01/2023", "x": 161.0, "y": 412.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "14/01/2033", "x": 270.0, "y": 412.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "Prefecture de Paris", "x": 375.0, "y": 412.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "15 Rue de Rivoli, 75001 Paris, France", "x": 22.0, "y": 365.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "sophie.martin@email.com", "x": 22.0, "y": 336.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "+33-6-12345678", "x": 270.0, "y": 336.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "N/A", "x": 22.0, "y": 295.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "Software Engineer", "x": 22.0, "y": 270.0, "page": 0, "font_size": 8, "type": "text"},
-        {"value": "TechCorp SAS, 50 Avenue des Champs-Elysees, 75008 Paris, +33-1-9876543", "x": 22.0, "y": 230.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "X", "x": 37.0, "y": 186.4, "page": 0, "font_size": 8, "type": "checkbox"},
-        {"value": "TechCorp SAS, 50 Avenue des Champs-Elysees, 75008 Paris", "x": 22.0, "y": 136.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "hr@techcorp.fr, +33-1-9876543", "x": 22.0, "y": 126.0, "page": 0, "font_size": 7, "type": "text"},
-        {"value": "50 Avenue des Champs-Elysees, 75008 Paris", "x": 22.0, "y": 78.0, "page": 0, "font_size": 8, "type": "text"},
-
-        {"value": "X", "x": 270.4, "y": 763.0, "page": 1, "font_size": 8, "type": "checkbox"},
-        {"value": "N/A", "x": 42.0, "y": 729.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "Salary from TechCorp SAS, personal savings", "x": 22.0, "y": 640.0, "page": 1, "font_size": 8, "type": "text"},
-        {"value": "X", "x": 408.4, "y": 612.7, "page": 1, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 408.4, "y": 550.1, "page": 1, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 408.4, "y": 470.0, "page": 1, "font_size": 8, "type": "checkbox"},
-        {"value": "X", "x": 408.4, "y": 390.0, "page": 1, "font_size": 8, "type": "checkbox"},
-        {"value": "Paris, 2024-02-15", "x": 36.0, "y": 125.0, "page": 1, "font_size": 9, "type": "text"},
-        {"value": "Sophie Martin", "x": 270.0, "y": 125.0, "page": 1, "font_size": 9, "type": "text"}
+        {
+            "type": "photo",
+            "image_path": "tests/fixtures/test_photo.png",
+            "x": 500,
+            "y": 720,
+            "page": 0,
+            "width": 80,
+            "height": 100
+        },
+        {
+            "value": "MARTIN",
+            "x": 22.0,
+            "y": 678.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "MARTIN",
+            "x": 22.0,
+            "y": 654.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Louise",
+            "x": 22.0,
+            "y": 630.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "15/03/1990",
+            "x": 22.0,
+            "y": 611.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Paris",
+            "x": 161.0,
+            "y": 611.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 319.0,
+            "y": 611.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "France",
+            "x": 161.0,
+            "y": 590.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "French",
+            "x": 319.0,
+            "y": 590.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 99.3,
+            "y": 560.2,
+            "page": 0,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 229.0,
+            "y": 560.2,
+            "page": 0,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "MARTIN Thomas",
+            "x": 22.0,
+            "y": 520.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "French, born BERNARD",
+            "x": 22.0,
+            "y": 493.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 161.6,
+            "y": 451.1,
+            "page": 0,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "20FR12345",
+            "x": 22.0,
+            "y": 412.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "15/01/2023",
+            "x": 161.0,
+            "y": 412.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "14/01/2033",
+            "x": 270.0,
+            "y": 412.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Prefecture de Paris",
+            "x": 375.0,
+            "y": 412.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "15 Rue de Rivoli, 75001 Paris, France",
+            "x": 22.0,
+            "y": 365.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "sophie.martin@email.com",
+            "x": 22.0,
+            "y": 336.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "+33-6-12345678",
+            "x": 270.0,
+            "y": 336.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "N/A",
+            "x": 22.0,
+            "y": 295.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Software Engineer",
+            "x": 22.0,
+            "y": 270.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "TechCorp SAS, 50 Avenue des Champs-Elysees, 75008 Paris, +33-1-9876543",
+            "x": 22.0,
+            "y": 230.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 37.0,
+            "y": 186.4,
+            "page": 0,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "TechCorp SAS, 50 Avenue des Champs-Elysees, 75008 Paris",
+            "x": 22.0,
+            "y": 136.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "hr@techcorp.fr, +33-1-9876543",
+            "x": 22.0,
+            "y": 126.0,
+            "page": 0,
+            "font_size": 7,
+            "type": "text"
+        },
+        {
+            "value": "50 Avenue des Champs-Elysees, 75008 Paris",
+            "x": 22.0,
+            "y": 78.0,
+            "page": 0,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 270.4,
+            "y": 763.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "N/A",
+            "x": 42.0,
+            "y": 729.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "Salary from TechCorp SAS, personal savings",
+            "x": 22.0,
+            "y": 640.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "text"
+        },
+        {
+            "value": "X",
+            "x": 408.4,
+            "y": 612.7,
+            "page": 1,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 408.4,
+            "y": 550.1,
+            "page": 1,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 408.4,
+            "y": 470.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "X",
+            "x": 408.4,
+            "y": 390.0,
+            "page": 1,
+            "font_size": 8,
+            "type": "checkbox"
+        },
+        {
+            "value": "Paris, 2024-02-15",
+            "x": 36.0,
+            "y": 125.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        },
+        {
+            "value": "Sophie Martin",
+            "x": 270.0,
+            "y": 125.0,
+            "page": 1,
+            "font_size": 9,
+            "type": "text"
+        }
     ]
 }

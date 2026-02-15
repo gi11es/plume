@@ -22,6 +22,12 @@
 
 ---
 
+<p align="center">
+  <img src="assets/demo_conversation.png" width="600" alt="Plume conversation">
+</p>
+
+---
+
 ## See it in action
 
 <table>

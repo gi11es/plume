@@ -1,0 +1,23 @@
+{
+  "personal": {
+    "last_name": "MARTIN",
+    "first_name": "Sophie",
+    "full_name": "MARTIN Sophie",
+    "date_of_birth": "15/03/1985"
+  },
+  "address": {
+    "street": "12 rue des Lilas",
+    "zip": "75011",
+    "city": "Paris",
+    "country": "France",
+    "full": "12 rue des Lilas, 75011 Paris"
+  },
+  "children": [
+    {
+      "last_name": "MARTIN",
+      "first_name": "Lucas",
+      "full_name": "MARTIN Lucas",
+      "date_of_birth": "22/09/2015"
+    }
+  ]
+}

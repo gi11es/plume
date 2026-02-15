@@ -6,7 +6,7 @@ Checks both:
 2. AcroForm fields — checks that field values are set correctly
 
 Usage:
-    python verify_fill.py <filled.pdf> <fill_spec.json> [--tolerance 5]
+    python verify.py <filled.pdf> <fill_spec.json> [--tolerance 5]
 
 Outputs a JSON report with pass/fail for each field.
 """

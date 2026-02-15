@@ -6,7 +6,7 @@ Supports two strategies:
 2. "overlay" — draws text at exact coordinates using reportlab, merges onto original
 
 Usage:
-    python fill_pdf.py <input.pdf> <fill_spec.json> <output.pdf> [--strategy auto]
+    python fill.py <input.pdf> <fill_spec.json> <output.pdf> [--strategy auto]
 
 The fill_spec.json format:
 {
@@ -32,19 +32,8 @@ import sys
 from pathlib import Path
 
 from pypdf import PdfReader, PdfWriter
-from pypdf.generic import (
-    ArrayObject,
-    BooleanObject,
-    DictionaryObject,
-    IndirectObject,
-    NameObject,
-    NumberObject,
-    TextStringObject,
-)
-from reportlab.lib.pagesizes import A4
+from pypdf.generic import IndirectObject
 from reportlab.pdfgen import canvas
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 
 
 def resolve(obj):
@@ -76,36 +65,6 @@ def fill_acroform(reader, writer, fields_spec):
 
     return writer
 
-
-def _update_fields_recursive(fields, values):
-    """Recursively update field values in the AcroForm tree."""
-    for field_ref in fields:
-        field = resolve(field_ref)
-        if not isinstance(field, DictionaryObject):
-            continue
-
-        name = str(field.get("/T", ""))
-        if name in values:
-            val = values[name]
-            ft = str(field.get("/FT", ""))
-
-            if ft == "/Btn":
-                # Checkbox: set to /Yes or /Off
-                if val in (True, "true", "True", "Yes", "yes", "1", "On", "on"):
-                    field[NameObject("/V")] = NameObject("/Yes")
-                    field[NameObject("/AS")] = NameObject("/Yes")
-                else:
-                    field[NameObject("/V")] = NameObject("/Off")
-                    field[NameObject("/AS")] = NameObject("/Off")
-            elif ft == "/Ch":
-                # Choice/dropdown
-                field[NameObject("/V")] = TextStringObject(val)
-            else:
-                # Text field
-                field[NameObject("/V")] = TextStringObject(val)
-
-        if "/Kids" in field:
-            _update_fields_recursive(resolve(field["/Kids"]), values)
 
 
 # ---------------------------------------------------------------------------

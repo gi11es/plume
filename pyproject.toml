@@ -1,0 +1,16 @@
+[project]
+name = "plume"
+version = "0.1.0"
+description = "Fill any PDF form with a single command — a Claude Code skill"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "pypdf>=4.0.0",
+    "reportlab>=4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]

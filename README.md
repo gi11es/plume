@@ -1,160 +1,192 @@
 <p align="center">
-  <img src="assets/logo.png" alt="Plume" width="200">
+  <img src="assets/logo.png" alt="Plume" width="180">
 </p>
 
 <h1 align="center">Plume</h1>
 
 <p align="center">
-  <strong>A Claude Code skill that fills any PDF form — smart enough to read the form, remember your info, and verify its own work.</strong>
+  <strong>Fill any PDF form with a single command. Interactive fields, graphical forms, any language.</strong>
 </p>
 
 <p align="center">
-  <a href="#how-it-works">How it works</a> &bull;
-  <a href="#installation">Installation</a> &bull;
+  A <a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code</a> skill that reads your PDF, figures out the fields, fills them in, and verifies its own work.
+</p>
+
+<p align="center">
+  <a href="#installation">Install</a> &bull;
   <a href="#usage">Usage</a> &bull;
-  <a href="#architecture">Architecture</a> &bull;
-  <a href="#testing">Testing</a>
+  <a href="#how-it-works">How it works</a> &bull;
+  <a href="#testing">Tests</a> &bull;
+  <a href="#license">License</a>
 </p>
 
 ---
 
-## What is this?
+## See it in action
 
-Plume is a [Claude Code](https://claude.ai/claude-code) skill that turns PDF form filling from a tedious chore into a single command. Point it at any PDF form — whether it's a French *autorisation parentale*, a US tax form, or a German *Anmeldung* — and it figures out the fields, fills them with your data, and verifies the result.
+<table>
+<tr>
+<td align="center"><strong>Before</strong></td>
+<td align="center"><strong>After <code>/plume</code></strong></td>
+</tr>
+<tr>
+<td><img src="assets/demo_foersom_before.png" width="380" alt="Empty form"></td>
+<td><img src="assets/demo_foersom_after.png" width="380" alt="Filled form"></td>
+</tr>
+<tr><td colspan="2" align="center"><em>AcroForm PDF &mdash; text fields, checkboxes, and dropdowns filled directly</em></td></tr>
+</table>
 
-```
-/plume ~/Downloads/tax-form-2026.pdf
-```
+<table>
+<tr>
+<td align="center"><strong>Before</strong></td>
+<td align="center"><strong>After <code>/plume</code></strong></td>
+</tr>
+<tr>
+<td><img src="assets/demo_w9_before.png" width="380" alt="Empty W-9"></td>
+<td><img src="assets/demo_w9_after.png" width="380" alt="Filled W-9"></td>
+</tr>
+<tr><td colspan="2" align="center"><em>IRS W-9 &mdash; tax form with nested XFA fields</em></td></tr>
+</table>
 
-It handles **both** types of PDF forms:
-- **Interactive forms** (AcroForm) — text fields, checkboxes, dropdowns filled directly
-- **Graphical forms** — "dumb" PDFs where fields are just colored rectangles, filled via precise text overlay
+<table>
+<tr>
+<td align="center"><strong>Before</strong></td>
+<td align="center"><strong>After <code>/plume</code></strong></td>
+</tr>
+<tr>
+<td><img src="assets/demo_schengen_before.png" width="380" alt="Empty Schengen visa"></td>
+<td><img src="assets/demo_schengen_after.png" width="380" alt="Filled Schengen visa"></td>
+</tr>
+<tr><td colspan="2" align="center"><em>Schengen visa application &mdash; graphical PDF with no interactive fields, filled via precise text overlay</em></td></tr>
+</table>
 
-## How it works
-
-```
-PDF in → Extract structure → Map fields → Fill (overlay or AcroForm) → Verify → PDF out
-             │                    │                                        │
-             │                    ▼                                        │
-             │              Load memory ──→ Ask only for                   │
-             │              (user-info.json)  missing data                 │
-             │                                                             │
-             ▼                                                             ▼
-        Content stream                                              Visual + programmatic
-        parsing + AcroForm                                          alignment check
-        field detection                                             (self-correction loop)
-```
-
-1. **Extract** — Parses the PDF content stream for text labels, colored rectangles, and checkboxes. Also detects AcroForm interactive fields.
-2. **Map** — Associates labels with their input fields using spatial proximity.
-3. **Remember** — Loads your previously saved info (name, address, etc.) and only asks for what's missing.
-4. **Fill** — Either sets AcroForm field values directly, or creates a reportlab overlay merged onto the original.
-5. **Verify** — Reads the output PDF both visually (multimodal) and programmatically to check alignment. Self-corrects up to 3 times.
+---
 
 ## Installation
 
-### Prerequisites
+**1. Clone the repo:**
 
 ```bash
-pip install pypdf reportlab
+git clone https://github.com/gi11es/plume.git
+cd plume
 ```
 
-### Setup
-
-Clone the repo and create a symlink so `/plume` works from any directory:
+**2. Install dependencies:**
 
 ```bash
-git clone https://github.com/your-username/plume.git ~/Documents/personal/plume
-ln -s ~/Documents/personal/plume/.claude/skills/plume ~/.claude/skills/plume
+pip install -r requirements.txt
 ```
 
-### First run
+**3. Link the skill to Claude Code:**
 
-On first use, Plume will ask for your personal info and save it for future forms. You can also pre-populate `memory/user-info.json`:
-
-```json
-{
-  "personal": {
-    "last_name": "MARTIN",
-    "first_name": "Sophie",
-    "full_name": "MARTIN Sophie"
-  },
-  "address": {
-    "street": "12 rue des Lilas",
-    "zip": "75011",
-    "city": "Paris"
-  }
-}
+```bash
+mkdir -p ~/.claude/skills
+ln -s "$(pwd)/.claude/skills/plume" ~/.claude/skills/plume
 ```
+
+That's it. `/plume` is now available from any directory.
 
 ## Usage
 
 ```
-/plume path/to/form.pdf
+/plume ~/Downloads/some-form.pdf
 ```
 
 Plume will:
-1. Analyze the PDF structure
-2. Show you the detected fields
-3. Pre-fill from memory and ask for missing data
-4. Fill the PDF and save it as `form_filled.pdf`
-5. Visually verify the output
 
-## Architecture
+1. **Analyze** the PDF &mdash; detect whether it has interactive fields (AcroForm) or is a graphical form
+2. **Show you** the fields it found and what it plans to fill
+3. **Remember** your info from previous sessions &mdash; only ask for what's missing
+4. **Fill** the form using the right strategy (direct field values or text overlay)
+5. **Verify** the output visually and programmatically, self-correcting up to 3 times
+6. **Save** your new info for next time
+
+### What it handles
+
+| PDF type | How Plume fills it |
+|----------|-------------------|
+| **Interactive forms** (AcroForm) | Sets field values directly &mdash; text, checkboxes, dropdowns |
+| **Graphical forms** (no fields) | Reads the content stream, finds colored rectangles and labels, overlays text at exact coordinates |
+| **Mixed** | Both strategies combined |
+
+Tested on government forms from the US (IRS), UK (HMCTS), Germany, Spain, France, Canada, and the EU &mdash; in English, French, Spanish, and German.
+
+## How it works
+
+```
+PDF in --> Extract structure --> Map fields --> Fill --> Verify --> PDF out
+               |                    |                     |
+               v                    v                     v
+          Content stream      Load memory           Visual check
+          + AcroForm          Ask for missing       + coordinate check
+          field detection     Save new data         (self-correction loop)
+```
+
+Three Python scripts do the heavy lifting:
+
+| Script | What it does |
+|--------|-------------|
+| `scripts/extract.py` | Parses PDF content streams for text labels, colored rectangles, and checkboxes. Detects AcroForm fields with types, options, and positions. |
+| `scripts/fill.py` | Fills forms via AcroForm field values or reportlab text overlay merged onto the original. |
+| `scripts/verify.py` | Checks that filled text lands inside target field bounds. Returns a pass/fail JSON report. |
+
+### Memory
+
+Plume remembers your info between sessions in `memory/user-info.json`. On first run, copy the example:
+
+```bash
+cp memory/user-info.example.json memory/user-info.json
+```
+
+Then fill it with your details (or let Plume ask you interactively &mdash; it will save automatically).
+
+## Project structure
 
 ```
 plume/
 ├── scripts/
-│   ├── extract.py      # PDF structure parser (AcroForm + content stream)
-│   ├── fill.py         # Form filler (overlay + AcroForm strategies)
-│   ├── verify.py       # Alignment verification
-│   └── requirements.txt
+│   ├── extract.py          # PDF structure parser
+│   ├── fill.py             # Form filler (overlay + AcroForm)
+│   └── verify.py           # Fill verification
 ├── memory/
-│   └── user-info.json  # Your saved data (gitignored in real use)
+│   ├── user-info.example.json  # Example data (committed)
+│   └── user-info.json          # Your real data (gitignored)
 ├── tests/
-│   ├── fixtures/       # Sample PDF forms for testing
+│   ├── fixtures/           # 12 government PDF forms
 │   ├── test_extract.py
 │   ├── test_fill.py
 │   └── test_verify.py
+├── assets/                 # Logo + demo screenshots
 ├── .claude/
-│   ├── skills/plume/
-│   │   ├── SKILL.md    # The /plume slash command
-│   │   └── references/
-│   │       └── pdf-coordinate-guide.md
-│   └── CLAUDE.md
-└── assets/
-    └── logo.png
+│   └── skills/plume/       # Claude Code skill definition
+├── requirements.txt
+└── pyproject.toml
 ```
-
-### Scripts
-
-| Script | Purpose |
-|--------|---------|
-| `extract.py` | Parses PDF content streams for labels, rectangles, checkboxes. Detects AcroForm fields. Outputs JSON. |
-| `fill.py` | Fills PDFs via AcroForm field setting or reportlab text overlay + merge. |
-| `verify.py` | Checks filled text positions against target field bounds. Returns pass/fail report. |
-
-### Fill Strategies
-
-| Strategy | When | How |
-|----------|------|-----|
-| `acroform` | PDF has interactive form fields | Sets field values via pypdf |
-| `overlay` | PDF has only graphical fields | Creates reportlab canvas overlay, merges onto original |
-| `both` | PDF has some of each | AcroForm fill first, then overlay for graphical fields |
-| `auto` | Default | Detects which strategy to use |
 
 ## Testing
 
 ```bash
+pip install pytest
 pytest tests/ -v
 ```
 
-The test suite includes ~12 PDF forms from various government sources (IRS, UK HMRC, French CERFA, etc.) covering:
-- Interactive AcroForm PDFs with text fields, checkboxes, and dropdowns
-- Graphical PDFs with colored rectangles as fields
-- Multi-page forms
-- Multiple languages (English, French, Spanish, German)
+The test suite runs against 12 real-world PDF forms:
+
+| Form | Type | Language | Fields |
+|------|------|----------|--------|
+| US W-9 (IRS) | AcroForm | English | 23 |
+| US W-4 (IRS) | AcroForm | English | 48 |
+| US I-9 (USCIS) | AcroForm | English | 128 |
+| US SF-86 (OPM) | AcroForm | English | 6,197 |
+| UK N285 (HMCTS) | AcroForm | English | 8 |
+| German Kindergeld | AcroForm | German/English | 95 |
+| Spanish Modelo 030 | AcroForm | Spanish | 84 |
+| Foersom sample | AcroForm | English | 17 |
+| Canadian TD1 | Graphical | English | &mdash; |
+| EU Schengen visa | Graphical | English | &mdash; |
+| French Schengen visa | Graphical | French | &mdash; |
+| German Schengen visa | Graphical | German/English | &mdash; |
 
 ## License
 
-MIT
+[MIT](LICENSE)

@@ -11,8 +11,18 @@ You are filling a PDF form for the user. Follow these steps precisely.
 
 ## Constants
 
-```
-PLUME_ROOT=/Users/gilles/Documents/personal/plume
+First, determine PLUME_ROOT by finding the directory containing this skill. The skill lives at `<PLUME_ROOT>/.claude/skills/plume/SKILL.md`, so resolve upward from the skill file location. Alternatively, run:
+```bash
+PLUME_ROOT=$(python3 -c "
+import subprocess, os
+result = subprocess.run(['readlink', '-f', os.path.expanduser('~/.claude/skills/plume')], capture_output=True, text=True)
+skill_path = result.stdout.strip() if result.returncode == 0 else ''
+if skill_path:
+    print(os.path.dirname(os.path.dirname(os.path.dirname(skill_path))))
+else:
+    for d in [os.path.expanduser('~/Documents/personal/plume'), os.path.expanduser('~/plume')]:
+        if os.path.isdir(d): print(d); break
+")
 SCRIPTS=$PLUME_ROOT/scripts
 MEMORY=$PLUME_ROOT/memory/user-info.json
 ```

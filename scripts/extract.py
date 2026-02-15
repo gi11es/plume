@@ -6,7 +6,7 @@ Handles two types of PDFs:
 2. "AcroForm" PDFs — proper interactive form fields (text inputs, checkboxes, dropdowns)
 
 Usage:
-    python extract_pdf_structure.py <input.pdf> [--page N]
+    python extract.py <input.pdf> [--page N]
 
 Outputs JSON to stdout with the full structure.
 """

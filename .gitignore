@@ -22,5 +22,9 @@ Thumbs.db
 *.swp
 *.swo
 
+# User data (ships with example data, real data stays local)
+memory/user-info.json
+
 # Filled PDFs (outputs)
 *_filled.pdf
+assets/demo_*_filled.pdf

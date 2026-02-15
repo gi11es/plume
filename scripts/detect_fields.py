@@ -244,6 +244,208 @@ def detect_checkboxes(page):
 
 
 # ---------------------------------------------------------------------------
+# Strategy 5a: Photo box detection
+# ---------------------------------------------------------------------------
+
+# Labels commonly used to indicate photo placement in visa/ID forms
+PHOTO_LABELS = [
+    "photo", "foto", "fotografia", "passfoto", "photograph",
+    "photographie", "lichtbild", "fotografie",
+]
+
+
+def detect_photo_boxes(page):
+    """Detect photo/ID photo boxes on a page.
+
+    Uses two approaches:
+    1. Large filled rectangles (>50pt in both dimensions) near photo labels
+    2. Border-segment reconstruction — finds thin border elements forming a
+       closed rectangle near photo labels
+
+    Returns list of dicts with keys:
+      - rect: fitz.Rect in MuPDF coordinates (top-left origin)
+      - label: the label text found near the box
+      - source: "filled_rect" or "border_segments"
+    """
+    drawings = page.get_drawings()
+    words = page.get_text("words")
+    ph = page.rect.height
+
+    # 1. Find photo-related labels
+    photo_word_groups = []
+    for w in words:
+        text = w[4].lower().strip(".,;:()/ ")
+        if any(pl in text for pl in PHOTO_LABELS):
+            photo_word_groups.append({
+                "text": w[4],
+                "rect": fitz.Rect(w[0], w[1], w[2], w[3]),
+                "cx": (w[0] + w[2]) / 2,
+                "cy": (w[1] + w[3]) / 2,
+            })
+
+    if not photo_word_groups:
+        return []
+
+    # 2. Find large filled/stroked rectangles (potential photo boxes)
+    large_rects = []
+    for d in drawings:
+        r = d["rect"]
+        w, h = r.width, r.height
+        if w > 50 and h > 50 and w < 200 and h < 200:
+            fill = d.get("fill")
+            stroke = d.get("color")
+            # Accept white-filled or stroked rectangles
+            is_white = fill and all(c > 0.9 for c in fill)
+            has_stroke = stroke is not None
+            if is_white or has_stroke:
+                large_rects.append(r)
+
+    # 3. Find thin border elements for reconstructing boxes
+    thin_h = []  # Thin horizontal bars (height < 3, width > 30)
+    thin_v = []  # Thin vertical bars (width < 3, height > 30)
+    for d in drawings:
+        r = d["rect"]
+        w, h = r.width, r.height
+        if h < 3 and w > 30:
+            thin_h.append(r)
+        elif w < 3 and h > 30:
+            thin_v.append(r)
+
+    # Try to reconstruct boxes from border segments near each photo label
+    reconstructed_boxes = []
+    for label_info in photo_word_groups:
+        lx, ly = label_info["cx"], label_info["cy"]
+
+        # Find thin borders within 200pt of the label
+        nearby_h = [r for r in thin_h
+                    if abs(r.y0 - ly) < 200 and
+                    abs((r.x0 + r.x1) / 2 - lx) < 200]
+        nearby_v = [r for r in thin_v
+                    if abs(r.x0 - lx) < 200 and
+                    abs((r.y0 + r.y1) / 2 - ly) < 200]
+
+        if len(nearby_h) >= 2 and len(nearby_v) >= 2:
+            # Group horizontal bars by y-position
+            h_by_y = {}
+            for r in nearby_h:
+                key = round(r.y0, 0)
+                h_by_y.setdefault(key, []).append(r)
+
+            # Group vertical bars by x-position
+            v_by_x = {}
+            for r in nearby_v:
+                key = round(r.x0, 0)
+                v_by_x.setdefault(key, []).append(r)
+
+            h_ys = sorted(h_by_y.keys())
+            v_xs = sorted(v_by_x.keys())
+
+            # Try all pairs of (top_y, bottom_y) x (left_x, right_x)
+            # and pick the box closest to the label
+            best_box = None
+            best_score = float("inf")
+            for i, top_y in enumerate(h_ys):
+                for bottom_y in h_ys[i + 1:]:
+                    for j, left_x in enumerate(v_xs):
+                        for right_x in v_xs[j + 1:]:
+                            bw = right_x - left_x
+                            bh = bottom_y - top_y
+                            if bw < 50 or bh < 50 or bw > 200 or bh > 200:
+                                continue
+                            # Score: distance from box center to label
+                            bcx = (left_x + right_x) / 2
+                            bcy = (top_y + bottom_y) / 2
+                            dist = ((bcx - lx) ** 2 + (bcy - ly) ** 2) ** 0.5
+                            if dist < best_score:
+                                best_score = dist
+                                # Use inner edges
+                                left_rects = v_by_x[left_x]
+                                right_rects = v_by_x[right_x]
+                                top_rects = h_by_y[top_y]
+                                bottom_rects = h_by_y[bottom_y]
+                                inner_x0 = max(r.x1 for r in left_rects)
+                                inner_x1 = min(r.x0 for r in right_rects)
+                                inner_y0 = max(r.y1 for r in top_rects)
+                                inner_y1 = min(r.y0 for r in bottom_rects)
+                                best_box = fitz.Rect(inner_x0, inner_y0,
+                                                     inner_x1, inner_y1)
+
+            if best_box and best_box.width > 40 and best_box.height > 40:
+                reconstructed_boxes.append(best_box)
+
+    # 4. Associate boxes (large rects + reconstructed) with labels
+    all_candidate_boxes = []
+    for r in large_rects:
+        all_candidate_boxes.append((r, "filled_rect"))
+    for r in reconstructed_boxes:
+        all_candidate_boxes.append((r, "border_segments"))
+
+    # Deduplicate candidates at same position
+    unique_candidates = []
+    for box, source in all_candidate_boxes:
+        is_dup = False
+        for ub, _ in unique_candidates:
+            if (abs(box.x0 - ub.x0) < 5 and abs(box.y0 - ub.y0) < 5 and
+                    abs(box.x1 - ub.x1) < 5 and abs(box.y1 - ub.y1) < 5):
+                is_dup = True
+                break
+        if not is_dup:
+            unique_candidates.append((box, source))
+
+    results = []
+    for label_info in photo_word_groups:
+        lx, ly = label_info["cx"], label_info["cy"]
+        best_box = None
+        best_dist = float("inf")
+        best_source = ""
+
+        for box, source in unique_candidates:
+            # Box must be within reasonable distance of label
+            box_cx = (box.x0 + box.x1) / 2
+            box_cy = (box.y0 + box.y1) / 2
+            dist_x = abs(box_cx - lx)
+            dist_y = abs(box_cy - ly)
+
+            if dist_x < 150 and dist_y < 150:
+                dist = (dist_x ** 2 + dist_y ** 2) ** 0.5
+                if dist < best_dist:
+                    best_dist = dist
+                    best_box = box
+                    best_source = source
+
+        if best_box is not None:
+            # Use the full box — labels inside are just instructions ("Photo")
+            # that the photo image will cover
+            photo_rect = best_box
+
+            results.append({
+                "rect": photo_rect,
+                "label": label_info["text"],
+                "source": best_source,
+                "pdf_coords": {
+                    "x0": round(photo_rect.x0, 2),
+                    "y0": round(ph - photo_rect.y1, 2),
+                    "x1": round(photo_rect.x1, 2),
+                    "y1": round(ph - photo_rect.y0, 2),
+                },
+            })
+
+    # Deduplicate results by position
+    unique_results = []
+    for r in results:
+        is_dup = False
+        for ur in unique_results:
+            if (abs(r["rect"].x0 - ur["rect"].x0) < 5 and
+                    abs(r["rect"].y0 - ur["rect"].y0) < 5):
+                is_dup = True
+                break
+        if not is_dup:
+            unique_results.append(r)
+
+    return unique_results
+
+
+# ---------------------------------------------------------------------------
 # Strategy 5: Underline detection (write-on-line fields)
 # ---------------------------------------------------------------------------
 
@@ -432,7 +634,7 @@ def compute_fill_point_rect(rect, page_height):
 # Main detection
 # ---------------------------------------------------------------------------
 
-def detect_fields(pdf_path, page_num=0):
+def detect_fields(pdf_path, page_num=0, detect_photos=False):
     """Detect all fillable fields on a page using multiple strategies."""
     doc = fitz.open(pdf_path)
     page = doc[page_num]
@@ -637,6 +839,19 @@ def detect_fields(pdf_path, page_num=0):
             "font_size": min(8, int(cb.height - 2)),
         })
 
+    # Strategy 5a: Photo box detection
+    photo_boxes = []
+    if detect_photos:
+        raw_photo_boxes = detect_photo_boxes(page)
+        for pb in raw_photo_boxes:
+            photo_boxes.append({
+                "label": pb["label"],
+                "source": pb["source"],
+                "rect": pb["pdf_coords"],
+                "width": round(pb["rect"].width, 2),
+                "height": round(pb["rect"].height, 2),
+            })
+
     doc.close()
 
     # Compute confidence: how well did detection work?
@@ -649,7 +864,7 @@ def detect_fields(pdf_path, page_num=0):
     elif text_word_count > 20 and len(text_fields) < 8:
         confidence = "medium"
 
-    return {
+    result = {
         "page": page_num,
         "page_size": {"width": round(page_width, 1), "height": round(page_height, 1)},
         "detection": {
@@ -667,13 +882,16 @@ def detect_fields(pdf_path, page_num=0):
         "checkbox_fields": len(checkbox_fields),
         "fields": fields,
     }
+    if detect_photos:
+        result["photo_boxes"] = photo_boxes
+    return result
 
 
 # ---------------------------------------------------------------------------
 # Multi-page detection
 # ---------------------------------------------------------------------------
 
-def detect_all_pages(pdf_path):
+def detect_all_pages(pdf_path, detect_photos=False):
     """Detect fields across all pages of a PDF."""
     doc = fitz.open(pdf_path)
     num_pages = len(doc)
@@ -681,7 +899,7 @@ def detect_all_pages(pdf_path):
 
     all_results = []
     for page_num in range(num_pages):
-        result = detect_fields(pdf_path, page_num)
+        result = detect_fields(pdf_path, page_num, detect_photos=detect_photos)
         all_results.append(result)
 
     return {
@@ -727,6 +945,20 @@ def annotate_page(pdf_path, page_num, fields_data, output_png, dpi=200):
             page.draw_rect(mu_rect, color=(0, 0.7, 0), width=0.5)
             page.draw_circle(fitz.Point(mu_fill_x, mu_fill_y), 2, color=(0, 0.7, 0), fill=(0, 0.7, 0))
 
+    # Draw photo boxes in magenta
+    for pb in fields_data.get("photo_boxes", []):
+        r = pb["rect"]
+        mu_rect = fitz.Rect(r["x0"], page_height - r["y1"], r["x1"], page_height - r["y0"])
+        page.draw_rect(mu_rect, color=(0.8, 0, 0.8), width=1.5)
+        try:
+            page.insert_text(
+                fitz.Point(mu_rect.x0 + 2, mu_rect.y0 + 8),
+                f"PHOTO ({pb['width']:.0f}x{pb['height']:.0f})",
+                fontsize=5, color=(0.8, 0, 0.8),
+            )
+        except Exception:
+            pass
+
     pix = page.get_pixmap(dpi=dpi)
     pix.save(output_png)
     doc.close()
@@ -771,6 +1003,206 @@ def grid_overlay(pdf_path, page_num, output_png, dpi=150, step=50):
 # CLI
 # ---------------------------------------------------------------------------
 
+def run_ml_detection(pdf_path, page_num, model_name="auto"):
+    """Run ML detection and return results compatible with heuristic output."""
+    try:
+        from ml_detect import detect_pdf
+        return detect_pdf(pdf_path, model_name=model_name, page_num=page_num)
+    except ImportError:
+        print("ML dependencies not installed. Run: pip install -e '.[ml]'",
+              file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"ML detection failed: {e}", file=sys.stderr)
+        return None
+
+
+def run_optimal_ml(pdf_path, page_num):
+    """Run optimal multi-model ML strategy.
+
+    Based on benchmark results:
+    - Florence-2-large: best for photo boxes (5/7, 0.89 mIoU)
+    - FFDNet-L: best for checkboxes (90/93, 0.35pt error)
+    Heuristics handle text fields better than any ML model.
+
+    Returns dict with combined detections keyed by role.
+    """
+    results = {"models_used": [], "photo_detections": [], "checkbox_detections": []}
+    try:
+        from ml_detect import detect_pdf, normalise_label
+    except ImportError:
+        print("ML dependencies not installed. Run: pip install -e '.[ml]'",
+              file=sys.stderr)
+        return results
+
+    # Florence-2-large for photo box detection
+    try:
+        florence_result = detect_pdf(pdf_path, model_name="florence2-large",
+                                     page_num=page_num)
+        results["models_used"].append("florence2-large")
+        results["florence_ms"] = florence_result.get("inference_time_ms", 0)
+        for d in florence_result.get("detections", []):
+            label = normalise_label(d.get("label", ""))
+            if label == "photo_box":
+                results["photo_detections"].append(d)
+    except Exception as e:
+        print(f"Florence-2 detection failed: {e}", file=sys.stderr)
+
+    # FFDNet-L for checkbox detection
+    try:
+        ffdnet_result = detect_pdf(pdf_path, model_name="ffdnet-l",
+                                    page_num=page_num)
+        results["models_used"].append("ffdnet-l")
+        results["ffdnet_ms"] = ffdnet_result.get("inference_time_ms", 0)
+        for d in ffdnet_result.get("detections", []):
+            label = normalise_label(d.get("label", ""))
+            if label == "checkbox":
+                results["checkbox_detections"].append(d)
+    except Exception as e:
+        print(f"FFDNet detection failed: {e}", file=sys.stderr)
+
+    return results
+
+
+def merge_ml_detections(heuristic_result, ml_result, iou_threshold=0.7):
+    """Merge ML detections into heuristic results.
+
+    - If ML and heuristic agree (IoU >= threshold), boost confidence
+    - If ML finds fields not in heuristic, add them with source "ml_<model>"
+    """
+    if ml_result is None:
+        return heuristic_result
+
+    from ml_detect import compute_iou
+
+    model_name = ml_result.get("model", "unknown")
+    ml_dets = ml_result.get("detections", [])
+
+    # Track which ML detections matched heuristic fields
+    matched_ml = set()
+
+    for field in heuristic_result.get("fields", []):
+        cr = field["cell_rect"]
+        h_bbox = [cr["x0"], cr["y0"], cr["x1"], cr["y1"]]
+
+        for i, ml_det in enumerate(ml_dets):
+            if i in matched_ml:
+                continue
+            iou = compute_iou(h_bbox, ml_det["bbox"])
+            if iou >= iou_threshold:
+                matched_ml.add(i)
+                field["ml_confirmed"] = True
+                field["ml_iou"] = round(iou, 3)
+                break
+
+    # Add unmatched ML detections as new fields
+    new_fields = []
+    for i, ml_det in enumerate(ml_dets):
+        if i in matched_ml:
+            continue
+        bbox = ml_det["bbox"]
+        if ml_det.get("confidence", 0) < 0.4:
+            continue
+        new_fields.append({
+            "label": ml_det["label"],
+            "field_type": ml_det["label"],
+            "cell_rect": {
+                "x0": bbox[0], "y0": bbox[1],
+                "x1": bbox[2], "y1": bbox[3],
+            },
+            "fill_point": {
+                "x": round(bbox[0] + 2, 1),
+                "y": round(bbox[1] + (bbox[3] - bbox[1]) * 0.5, 1),
+            },
+            "font_size": 8,
+            "source": f"ml_{model_name}",
+            "ml_confidence": ml_det.get("confidence", 0),
+        })
+
+    if new_fields:
+        heuristic_result.setdefault("ml_detections", []).extend(new_fields)
+
+    # Boost confidence if ML confirmed most fields
+    confirmed = sum(1 for f in heuristic_result.get("fields", []) if f.get("ml_confirmed"))
+    total = len(heuristic_result.get("fields", []))
+    if total > 0 and confirmed / total > 0.5:
+        heuristic_result["confidence"] = "high"
+
+    heuristic_result["ml_model"] = model_name
+    heuristic_result["ml_inference_ms"] = ml_result.get("inference_time_ms", 0)
+
+    return heuristic_result
+
+
+def merge_optimal_ml(heuristic_result, optimal_result, iou_threshold=0.5):
+    """Merge optimal multi-model ML results into heuristic output.
+
+    Uses Florence-2-large photo detections and FFDNet-L checkbox detections
+    to validate and augment heuristic findings.
+    """
+    if not optimal_result or not optimal_result.get("models_used"):
+        return heuristic_result
+
+    from ml_detect import compute_iou
+
+    # --- Photo box validation/discovery ---
+    photo_dets = optimal_result.get("photo_detections", [])
+    existing_photos = heuristic_result.get("photo_boxes", [])
+
+    for ml_photo in photo_dets:
+        ml_bbox = ml_photo["bbox"]
+        matched = False
+        for pb in existing_photos:
+            r = pb["rect"]
+            h_bbox = [r["x0"], r["y0"], r["x1"], r["y1"]]
+            iou = compute_iou(h_bbox, ml_bbox)
+            if iou >= iou_threshold:
+                pb["ml_confirmed"] = True
+                pb["ml_iou"] = round(iou, 3)
+                matched = True
+                break
+        if not matched and ml_photo.get("confidence", 0) >= 0.4:
+            # ML found a photo box that heuristics missed
+            existing_photos.append({
+                "rect": {
+                    "x0": ml_bbox[0], "y0": ml_bbox[1],
+                    "x1": ml_bbox[2], "y1": ml_bbox[3],
+                },
+                "label": "photo_box",
+                "source": "ml_florence2",
+                "ml_confidence": ml_photo.get("confidence", 0),
+            })
+
+    heuristic_result["photo_boxes"] = existing_photos
+
+    # --- Checkbox validation ---
+    cb_dets = optimal_result.get("checkbox_detections", [])
+    cb_confirmed = 0
+    cb_total = 0
+
+    for field in heuristic_result.get("fields", []):
+        if field["field_type"] != "checkbox":
+            continue
+        cb_total += 1
+        cr = field["cell_rect"]
+        h_bbox = [cr["x0"], cr["y0"], cr["x1"], cr["y1"]]
+
+        for ml_cb in cb_dets:
+            iou = compute_iou(h_bbox, ml_cb["bbox"])
+            if iou >= 0.3:  # lower threshold for small checkboxes
+                field["ml_confirmed"] = True
+                field["ml_iou"] = round(iou, 3)
+                cb_confirmed += 1
+                break
+
+    heuristic_result["ml_models"] = optimal_result["models_used"]
+    heuristic_result["ml_photo_detections"] = len(photo_dets)
+    heuristic_result["ml_checkbox_confirmed"] = cb_confirmed
+    heuristic_result["ml_checkbox_total"] = cb_total
+
+    return heuristic_result
+
+
 def main():
     parser = argparse.ArgumentParser(description="Detect fillable fields in graphical PDFs")
     parser.add_argument("input_pdf", help="Path to input PDF")
@@ -778,7 +1210,14 @@ def main():
     parser.add_argument("--all-pages", action="store_true", help="Detect fields on all pages")
     parser.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")
     parser.add_argument("--annotate", help="Save annotated PNG showing detected fields")
+    parser.add_argument("--detect-photos", action="store_true", help="Detect photo/ID boxes")
     parser.add_argument("--grid-overlay", help="Save coordinate grid overlay PNG")
+    parser.add_argument("--ml", action="store_true",
+                        help="Run optimal ML detection (Florence-2 for photos, "
+                             "FFDNet-L for checkboxes)")
+    parser.add_argument("--ml-model", default=None,
+                        help="Override: use a single ML model instead of optimal "
+                             "multi-model strategy")
     args = parser.parse_args()
 
     if not Path(args.input_pdf).exists():
@@ -790,9 +1229,28 @@ def main():
         return
 
     if args.all_pages:
-        result = detect_all_pages(args.input_pdf)
+        result = detect_all_pages(args.input_pdf, detect_photos=args.detect_photos)
+        if args.ml:
+            for page_data in result.get("pages", []):
+                if args.ml_model:
+                    # Single-model override
+                    ml_result = run_ml_detection(
+                        args.input_pdf, page_data["page"], args.ml_model
+                    )
+                    merge_ml_detections(page_data, ml_result)
+                else:
+                    # Optimal multi-model strategy
+                    opt = run_optimal_ml(args.input_pdf, page_data["page"])
+                    merge_optimal_ml(page_data, opt)
     else:
-        result = detect_fields(args.input_pdf, args.page)
+        result = detect_fields(args.input_pdf, args.page, detect_photos=args.detect_photos)
+        if args.ml:
+            if args.ml_model:
+                ml_result = run_ml_detection(args.input_pdf, args.page, args.ml_model)
+                merge_ml_detections(result, ml_result)
+            else:
+                opt = run_optimal_ml(args.input_pdf, args.page)
+                merge_optimal_ml(result, opt)
 
     if args.annotate:
         if args.all_pages:

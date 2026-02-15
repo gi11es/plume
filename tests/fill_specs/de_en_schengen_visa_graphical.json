@@ -1,14 +1,15 @@
 {
     "strategy": "overlay",
+    "gallery_pages": [0, 1],
     "fields": [
         {
             "type": "photo",
             "image_path": "tests/fixtures/test_photo.png",
-            "x": 475,
-            "y": 720,
+            "x": 426.63,
+            "y": 683.1,
             "page": 0,
-            "width": 80,
-            "height": 100
+            "width": 125.15,
+            "height": 81.58
         },
         {
             "value": "MARTIN",

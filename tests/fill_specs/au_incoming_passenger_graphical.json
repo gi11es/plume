@@ -1,5 +1,6 @@
 {
     "strategy": "overlay",
+    "gallery_pages": [0, 1],
     "fields": [
         {"value": "M", "x": 82.8, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},
         {"value": "A", "x": 92.7, "y": 196.4, "page": 0, "font_size": 9, "type": "text"},

@@ -109,7 +109,7 @@ Plume will:
 | **Graphical forms** (no fields) | Reads the content stream, finds colored rectangles and labels, overlays text at exact coordinates |
 | **Mixed** | Both strategies combined |
 
-Tested on 18 government forms from the US, UK, Germany, Spain, France, Italy, Portugal, Canada, Japan, Australia, and the EU &mdash; in 10 languages.
+Tested on 18 government forms from the US, UK, Germany, Spain, France, Italy, Portugal, Canada, Japan, Australia, and the EU &mdash; in 10 languages. See the **[full before/after gallery](GALLERY.md)** for all 18 forms.
 
 ## How it works
 

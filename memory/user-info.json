@@ -3,7 +3,8 @@
     "last_name": "MARTIN",
     "first_name": "Sophie",
     "full_name": "MARTIN Sophie",
-    "date_of_birth": "15/03/1985"
+    "date_of_birth": "15/03/1985",
+    "marital_status": "married"
   },
   "address": {
     "street": "12 rue des Lilas",
@@ -11,6 +12,16 @@
     "city": "Paris",
     "country": "France",
     "full": "12 rue des Lilas, 75011 Paris"
+  },
+  "spouse": {
+    "last_name": "MARTIN",
+    "first_name": "Thomas",
+    "maiden_name": "BERNARD",
+    "full_name": "MARTIN Thomas",
+    "date_of_birth": "22/07/1988",
+    "place_of_birth": "Lyon, France",
+    "nationality": "French",
+    "occupation": "Architect"
   },
   "children": [
     {

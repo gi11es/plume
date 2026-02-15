@@ -43,22 +43,19 @@ def screenshot_page(pdf_path: str, page_index: int, output_png: str, dpi: int = 
 
 def process_pdf(pdf_path: Path, spec_path: Path) -> bool:
     """Generate before/after screenshots for one PDF using fill.py."""
+    import json as _json
+
     stem = pdf_path.stem
-
-    before_png = GALLERY_DIR / f"{stem}_before.png"
-    after_png = GALLERY_DIR / f"{stem}_after.png"
-
     print(f"  [{stem}]")
 
-    # Determine which page to screenshot (default: 0)
-    import json as _json
     with open(spec_path) as _f:
         _spec = _json.load(_f)
-    page_index = _spec.get("gallery_page", 0)
 
-    # 1. Before screenshot
-    screenshot_page(str(pdf_path), page_index, str(before_png))
-    print(f"    Before: {before_png.name} ({before_png.stat().st_size // 1024} KB)")
+    # Determine which pages to screenshot
+    # "gallery_pages" (list) takes precedence over "gallery_page" (int)
+    gallery_pages = _spec.get("gallery_pages")
+    if gallery_pages is None:
+        gallery_pages = [_spec.get("gallery_page", 0)]
 
     # 2. Fill with fill.py
     with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
@@ -84,9 +81,23 @@ def process_pdf(pdf_path: Path, spec_path: Path) -> bool:
         except json.JSONDecodeError:
             print(f"    Filled (could not parse output)")
 
-        # 3. After screenshot
-        screenshot_page(tmp_filled, page_index, str(after_png))
-        print(f"    After:  {after_png.name} ({after_png.stat().st_size // 1024} KB)")
+        # Generate before/after screenshots for each page
+        for page_index in gallery_pages:
+            if len(gallery_pages) == 1:
+                # Single page: use original naming (no _pN suffix)
+                before_png = GALLERY_DIR / f"{stem}_before.png"
+                after_png = GALLERY_DIR / f"{stem}_after.png"
+            else:
+                # Multi-page: add _pN suffix
+                before_png = GALLERY_DIR / f"{stem}_before_p{page_index}.png"
+                after_png = GALLERY_DIR / f"{stem}_after_p{page_index}.png"
+
+            screenshot_page(str(pdf_path), page_index, str(before_png))
+            print(f"    Before: {before_png.name} ({before_png.stat().st_size // 1024} KB)")
+
+            screenshot_page(tmp_filled, page_index, str(after_png))
+            print(f"    After:  {after_png.name} ({after_png.stat().st_size // 1024} KB)")
+
     finally:
         if os.path.exists(tmp_filled):
             os.unlink(tmp_filled)
@@ -133,21 +144,33 @@ def main():
     print(f"\nDone: {success} succeeded, {failed} failed")
 
     # Verify all expected files exist
+    import json as _json_verify
     print("\nVerifying output files:")
     all_ok = True
     for pdf_path, spec_path in pairs:
         stem = pdf_path.stem
-        for suffix in ("_before.png", "_after.png"):
-            png_path = GALLERY_DIR / f"{stem}{suffix}"
-            exists = png_path.exists()
-            status = "OK" if exists else "MISSING"
-            size_info = ""
-            if exists:
-                size_kb = png_path.stat().st_size / 1024
-                size_info = f" ({size_kb:.0f} KB)"
-            print(f"  [{status}] {png_path.name}{size_info}")
-            if not exists:
-                all_ok = False
+        with open(spec_path) as _fv:
+            _sv = _json_verify.load(_fv)
+        gp = _sv.get("gallery_pages")
+        if gp is None:
+            gp = [_sv.get("gallery_page", 0)]
+
+        for page_index in gp:
+            if len(gp) == 1:
+                suffixes = ("_before.png", "_after.png")
+            else:
+                suffixes = (f"_before_p{page_index}.png", f"_after_p{page_index}.png")
+            for suffix in suffixes:
+                png_path = GALLERY_DIR / f"{stem}{suffix}"
+                exists = png_path.exists()
+                status = "OK" if exists else "MISSING"
+                size_info = ""
+                if exists:
+                    size_kb = png_path.stat().st_size / 1024
+                    size_info = f" ({size_kb:.0f} KB)"
+                print(f"  [{status}] {png_path.name}{size_info}")
+                if not exists:
+                    all_ok = False
 
     if not all_ok:
         print("\nSome files are missing!")

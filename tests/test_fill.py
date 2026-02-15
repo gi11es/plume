@@ -306,6 +306,90 @@ class TestSignatureFill:
 
 
 # ---------------------------------------------------------------------------
+# Photo overlay
+# ---------------------------------------------------------------------------
+
+TEST_PHOTO = FIXTURES_DIR / "test_photo.png"
+
+
+class TestPhotoFill:
+    """Test photo image overlay integration."""
+
+    def test_photo_overlay_creates_output(self, tmp_output):
+        """A photo field in the spec produces a valid filled PDF."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "photo.pdf"
+
+        spec = make_spec(tmp_output, {
+            "strategy": "overlay",
+            "fields": [
+                {"type": "photo", "image_path": str(TEST_PHOTO),
+                 "x": 100, "y": 700, "page": 0, "width": 99, "height": 128},
+            ],
+        })
+
+        result = run_fill(pdf_path, spec, output_path, "overlay")
+        assert result["status"] == "success"
+        assert output_path.exists()
+        assert output_path.stat().st_size > 0
+
+    def test_photo_preserves_pages(self, tmp_output):
+        """Photo overlay doesn't add or remove pages."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "photo.pdf"
+        original = PdfReader(str(pdf_path))
+
+        spec = make_spec(tmp_output, {
+            "strategy": "overlay",
+            "fields": [
+                {"type": "photo", "image_path": str(TEST_PHOTO),
+                 "x": 100, "y": 700, "page": 0, "width": 99, "height": 128},
+            ],
+        })
+
+        run_fill(pdf_path, spec, output_path, "overlay")
+        filled = PdfReader(str(output_path))
+        assert len(filled.pages) == len(original.pages)
+
+    def test_missing_photo_image_skipped(self, tmp_output):
+        """A photo field with a non-existent image path is silently skipped."""
+        if not GRAPHICAL_PDFS:
+            pytest.skip("No graphical test PDFs")
+        entry = GRAPHICAL_PDFS[0]
+        pdf_path = FIXTURES_DIR / entry["filename"]
+        output_path = tmp_output / "photo.pdf"
+
+        spec = make_spec(tmp_output, {
+            "strategy": "overlay",
+            "fields": [
+                {"type": "photo", "image_path": "/nonexistent/photo.png",
+                 "x": 100, "y": 700, "page": 0, "width": 99, "height": 128},
+            ],
+        })
+
+        result = run_fill(pdf_path, spec, output_path, "overlay")
+        assert result["status"] == "success"
+
+    def test_photo_png_dimensions(self):
+        """Verify the test photo has reasonable passport-photo dimensions."""
+        from PIL import Image
+        img = Image.open(str(TEST_PHOTO))
+        assert img.mode == "RGBA", f"Expected RGBA, got {img.mode}"
+        w, h = img.size
+        aspect = w / h
+        # Passport photo is 35x45mm → aspect ratio ~0.778
+        assert 0.7 < aspect < 0.85, f"Aspect ratio {aspect:.3f} outside passport range"
+        assert w >= 200, f"Width {w} too small for passport photo"
+        assert h >= 250, f"Height {h} too small for passport photo"
+
+
+# ---------------------------------------------------------------------------
 # Auto strategy detection
 # ---------------------------------------------------------------------------
 

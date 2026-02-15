@@ -62,7 +62,7 @@
         {"name": "Employers Business or Org Name", "value": "Martin Digital Consulting LLC", "type": "text"},
         {"name": "Employers Business or Org Address", "value": "742 Evergreen Terrace, Apt 3B, Springfield, IL 62704", "type": "text"},
 
-        {"type": "signature", "image_path": "tests/fixtures/test_signature.png", "x": 45, "y": 421, "page": 0, "width": 150, "height": 35},
-        {"type": "signature", "image_path": "tests/fixtures/test_signature.png", "x": 296, "y": 80, "page": 0, "width": 130, "height": 30}
+        {"type": "signature", "image_path": "tests/fixtures/test_signature.png", "x": 120, "y": 421, "page": 0, "width": 240, "height": 18},
+        {"type": "signature", "image_path": "tests/fixtures/test_signature.png", "x": 300, "y": 80, "page": 0, "width": 175, "height": 18}
     ]
 }

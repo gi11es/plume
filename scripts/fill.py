@@ -19,9 +19,9 @@ The fill_spec.json format:
             "page": 0,
             "font_size": 10,
             "font": "Helvetica",
-            "type": "text" | "checkbox" | "choice" | "signature",
-            "image_path": "/path/to/sig.png",   # for signature type
-            "width": 150, "height": 50           # for signature type
+            "type": "text" | "checkbox" | "choice" | "signature" | "photo",
+            "image_path": "/path/to/image.png",  # for signature/photo type
+            "width": 150, "height": 50           # for signature (99x128 for photo)
         }
     ]
 }
@@ -112,6 +112,14 @@ def create_overlay(fields_spec, page_width, page_height):
                 sig_h = field.get("height", 50)
                 c.drawImage(ImageReader(image_path), x, y,
                             width=sig_w, height=sig_h, mask="auto")
+        elif field_type == "photo":
+            # Draw a passport/ID photo image
+            image_path = field.get("image_path", "")
+            if image_path and Path(image_path).exists():
+                ph_w = field.get("width", 99)    # 35mm at 72dpi
+                ph_h = field.get("height", 128)   # 45mm at 72dpi
+                c.drawImage(ImageReader(image_path), x, y,
+                            width=ph_w, height=ph_h, mask="auto")
         elif field_type == "checkbox":
             # Draw an X mark
             c.setFont(font_name, font_size)

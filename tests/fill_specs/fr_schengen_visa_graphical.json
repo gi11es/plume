@@ -1,6 +1,8 @@
 {
     "strategy": "overlay",
+    "gallery_pages": [0, 1],
     "fields": [
+        {"type": "photo", "image_path": "tests/fixtures/test_photo.png", "x": 66.85, "y": 660.38, "page": 0, "width": 75.2, "height": 78.8},
         {"value": "MARTIN", "x": 71.0, "y": 632.0, "page": 0, "font_size": 10, "type": "text"},
         {"value": "MARTIN", "x": 71.0, "y": 603.0, "page": 0, "font_size": 10, "type": "text"},
         {"value": "Sophie Louise", "x": 71.0, "y": 573.0, "page": 0, "font_size": 10, "type": "text"},
@@ -9,7 +11,7 @@
         {"value": "French", "x": 71.0, "y": 513.0, "page": 0, "font_size": 10, "type": "text"},
         {"value": "French", "x": 258.0, "y": 513.0, "page": 0, "font_size": 10, "type": "text"},
         {"value": "X", "x": 103.0, "y": 489.0, "page": 0, "font_size": 10, "type": "checkbox"},
-        {"value": "X", "x": 259.0, "y": 489.0, "page": 0, "font_size": 10, "type": "checkbox"},
+        {"value": "X", "x": 290.0, "y": 489.0, "page": 0, "font_size": 10, "type": "checkbox"},
         {"value": "Jean-Pierre MARTIN", "x": 71.0, "y": 447.0, "page": 0, "font_size": 9, "type": "text"},
         {"value": "Marie-Claire DUBOIS", "x": 258.0, "y": 447.0, "page": 0, "font_size": 9, "type": "text"},
         {"value": "X", "x": 72.0, "y": 408.0, "page": 0, "font_size": 10, "type": "checkbox"},
@@ -27,6 +29,11 @@
         {"value": "91", "x": 380.0, "y": 156.0, "page": 0, "font_size": 10, "type": "text"},
         {"value": "None", "x": 71.0, "y": 132.0, "page": 0, "font_size": 9, "type": "text"},
         {"value": "N/A", "x": 71.0, "y": 108.0, "page": 0, "font_size": 9, "type": "text"},
-        {"value": "None", "x": 71.0, "y": 99.0, "page": 0, "font_size": 9, "type": "text"}
+        {"value": "None", "x": 71.0, "y": 99.0, "page": 0, "font_size": 9, "type": "text"},
+        {"value": "MARTIN", "x": 70.0, "y": 496.0, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "BERNARD", "x": 290.0, "y": 496.0, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "Thomas", "x": 70.0, "y": 464.0, "page": 1, "font_size": 10, "type": "text"},
+        {"value": "22/07/1988", "x": 237.0, "y": 464.0, "page": 1, "font_size": 9, "type": "text"},
+        {"value": "Lyon, France", "x": 357.0, "y": 464.0, "page": 1, "font_size": 9, "type": "text"}
     ]
 }

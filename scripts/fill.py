@@ -19,7 +19,7 @@ The fill_spec.json format:
             "page": 0,
             "font_size": 10,
             "font": "Helvetica",
-            "type": "text" | "checkbox" | "choice" | "signature" | "photo",
+            "type": "text" | "checkbox" | "choice" | "signature" | "photo" | "strikethrough",
             "image_path": "/path/to/image.png",  # for signature/photo type
             "width": 150, "height": 50           # for signature (99x128 for photo)
         }
@@ -120,6 +120,18 @@ def create_overlay(fields_spec, page_width, page_height):
                 ph_h = field.get("height", 128)   # 45mm at 72dpi
                 c.drawImage(ImageReader(image_path), x, y,
                             width=ph_w, height=ph_h, mask="auto")
+        elif field_type == "strikethrough":
+            # Draw a horizontal line through text to strike it out
+            c.setFont(font_name, font_size)
+            text_width = c.stringWidth(str(value), font_name, font_size) if value else field.get("width", 30)
+            line_y = y + font_size * 0.35  # vertical center of text
+            c.setStrokeColorRGB(
+                color.get("r", 0) if color else 0,
+                color.get("g", 0) if color else 0,
+                color.get("b", 0) if color else 0,
+            )
+            c.setLineWidth(field.get("line_width", 0.8))
+            c.line(x, line_y, x + text_width, line_y)
         elif field_type == "checkbox":
             # Draw an X mark
             c.setFont(font_name, font_size)

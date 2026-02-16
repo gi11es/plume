@@ -5,11 +5,11 @@
         {
             "type": "photo",
             "image_path": "tests/fixtures/test_photo.png",
-            "x": 426.63,
+            "x": 476.4,
             "y": 683.1,
             "page": 0,
-            "width": 125.15,
-            "height": 81.58
+            "width": 64.2,
+            "height": 82.5
         },
         {
             "value": "MARTIN",

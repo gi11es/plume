@@ -5,10 +5,10 @@
         {
             "type": "photo",
             "image_path": "tests/fixtures/test_photo.png",
-            "x": 474.6,
-            "y": 624.09,
+            "x": 480.6,
+            "y": 624.1,
             "page": 0,
-            "width": 76.65,
+            "width": 64.6,
             "height": 83.1
         },
         {

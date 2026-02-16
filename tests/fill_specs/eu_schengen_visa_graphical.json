@@ -84,12 +84,60 @@
             "type": "checkbox"
         },
         {
+            "value": "Male",
+            "x": 72.8,
+            "y": 530.3,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
             "value": "X",
             "x": 297,
             "y": 531.2,
             "page": 0,
             "font_size": 7,
             "type": "checkbox"
+        },
+        {
+            "value": "Single",
+            "x": 263.2,
+            "y": 530.3,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Separated",
+            "x": 357.0,
+            "y": 530.3,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Divorced",
+            "x": 406.2,
+            "y": 530.3,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Widow(er)",
+            "x": 247.5,
+            "y": 519.8,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Other",
+            "x": 298.1,
+            "y": 519.8,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
         },
         {
             "value": "Jean-Pierre MARTIN",
@@ -114,6 +162,54 @@
             "page": 0,
             "font_size": 7,
             "type": "checkbox"
+        },
+        {
+            "value": "Diplomatic passport",
+            "x": 172.5,
+            "y": 470.3,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Service passport",
+            "x": 278.2,
+            "y": 470.3,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Travel document (1951 Convention)",
+            "x": 77.2,
+            "y": 459.8,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Alien's passport",
+            "x": 239.5,
+            "y": 459.8,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Seaman's passport",
+            "x": 333.3,
+            "y": 459.8,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Other travel document (please specify):",
+            "x": 77.2,
+            "y": 449.3,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
         },
         {
             "value": "20FR12345",
@@ -196,6 +292,30 @@
             "type": "checkbox"
         },
         {
+            "value": "Airport transit",
+            "x": 226.5,
+            "y": 276.3,
+            "page": 0,
+            "font_size": 8,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Transit",
+            "x": 300.8,
+            "y": 276.3,
+            "page": 0,
+            "font_size": 8,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Long stay",
+            "x": 302.2,
+            "y": 256.8,
+            "page": 0,
+            "font_size": 8,
+            "type": "strikethrough"
+        },
+        {
             "value": "X",
             "x": 366.5,
             "y": 277.0,
@@ -204,12 +324,36 @@
             "type": "checkbox"
         },
         {
+            "value": "Collective",
+            "x": 378.8,
+            "y": 256.8,
+            "page": 0,
+            "font_size": 8,
+            "type": "strikethrough"
+        },
+        {
             "value": "X",
             "x": 63.5,
             "y": 214.8,
             "page": 0,
             "font_size": 7,
             "type": "checkbox"
+        },
+        {
+            "value": "Two entries",
+            "x": 145.5,
+            "y": 213.8,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Multiple entries",
+            "x": 216.0,
+            "y": 213.8,
+            "page": 0,
+            "font_size": 9,
+            "type": "strikethrough"
         },
         {
             "value": "91",
@@ -250,6 +394,54 @@
             "page": 1,
             "font_size": 7,
             "type": "checkbox"
+        },
+        {
+            "value": "Tourism",
+            "x": 74.2,
+            "y": 780.1,
+            "page": 1,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Visit to Family or Friends",
+            "x": 190.6,
+            "y": 780.1,
+            "page": 1,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Cultural/Sports",
+            "x": 313.5,
+            "y": 780.1,
+            "page": 1,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Official",
+            "x": 396.0,
+            "y": 780.1,
+            "page": 1,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Medical reasons",
+            "x": 74.8,
+            "y": 769.6,
+            "page": 1,
+            "font_size": 9,
+            "type": "strikethrough"
+        },
+        {
+            "value": "Other (please specify):",
+            "x": 155.5,
+            "y": 769.6,
+            "page": 1,
+            "font_size": 9,
+            "type": "strikethrough"
         },
         {
             "value": "2024-03-01",
